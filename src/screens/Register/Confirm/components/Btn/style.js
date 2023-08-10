@@ -5,7 +5,7 @@ const style = StyleSheet.create({
         borderRadius: 5,
         width: '87vw',
         height: '5vh',
-        marginTop: '3vh'
+        marginTop: '3vh',
     },
     grd:{
         flex: 1,
