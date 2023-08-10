@@ -10,11 +10,12 @@ import Step04 from '../../screens/Steps/04'
 import Step05 from "../../screens/Steps/05";
 
 import SignIn from "../../screens/Register/Signin";
+import Confirm from "../../screens/Register/Confirm";
 
 export default function Stacks(){
     const Stack = createStackNavigator();
     return(
-        <Stack.Navigator initialRouteName="step01">
+        <Stack.Navigator initialRouteName="confirm">
             <Stack.Screen
                 name='home'
                 component={Tabs}
@@ -50,6 +51,11 @@ export default function Stacks(){
                 component={SignIn}
                 options={options.signin}
             />
+            <Stack.Screen
+                name='confirm'
+                component={Confirm}
+                options={options.signin}
+            />    
         </Stack.Navigator>
     )
 }
