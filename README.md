@@ -5,12 +5,12 @@
     git pull https://github.com/Evol-Corporativoo/TrampAqui main
 ```
 ---
-2. Baixar o NPM e o executável do expo para web, onde é possível visualizar o app.
+2. Baixar o gerenciador de pacotes do projeto
  ```sh
     yarn install
  ```
 ---
-3. Baixar as bibliotecas do projeto
+3. Baixar as bibliotecas necessárias para o projeto
 ```sh
   npm install @react-navigation/native @react-navigation/bottom-tabs @react-navigation/stack react-native-bouncy-checkbox
   npx expo install react-native-screens react-native-safe-area-context react-native-gesture-handler react-native-reanimated@~2.14.4 expo-linear-gradient react-native-web@~0.18.10 react-dom@18.2.0 @expo/webpack-config@^18.0.1
