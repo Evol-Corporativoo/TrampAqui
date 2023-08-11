@@ -26,7 +26,7 @@ const style = StyleSheet.create({
         width: '',
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: '1vh'
+        marginBottom: '2vh'
     },
     check_area:{
         flexDirection: 'row'

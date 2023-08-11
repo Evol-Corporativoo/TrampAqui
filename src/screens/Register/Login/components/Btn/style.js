@@ -3,10 +3,9 @@ import { StyleSheet } from "react-native";
 const style = StyleSheet.create({
     bg:{
         borderRadius: 5,
-        width: '80vw',
-        height: '6vh',
-        marginTop: '2vh',
-        marginBottom: '2vh',
+        width: '87vw',
+        height: '5vh',
+        marginTop: '3vh'
     },
     grd:{
         flex: 1,

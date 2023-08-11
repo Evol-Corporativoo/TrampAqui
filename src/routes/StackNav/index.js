@@ -11,11 +11,13 @@ import Step05 from "../../screens/Steps/05";
 
 import SignIn from "../../screens/Register/Signin";
 import Confirm from "../../screens/Register/Confirm";
+import PassCode from "../../screens/Register/PassCode";
+import Congrats from "../../screens/Register/Congrats";
 
 export default function Stacks(){
     const Stack = createStackNavigator();
     return(
-        <Stack.Navigator initialRouteName="confirm">
+        <Stack.Navigator initialRouteName="signin">
             <Stack.Screen
                 name='home'
                 component={Tabs}
@@ -56,6 +58,16 @@ export default function Stacks(){
                 component={Confirm}
                 options={options.signin}
             />    
+            <Stack.Screen
+                name='passcode'
+                component={PassCode}
+                options={options.signin}
+            />  
+            <Stack.Screen
+                name='congrats'
+                component={Congrats}
+                options={options.signin}
+            />
         </Stack.Navigator>
     )
 }
