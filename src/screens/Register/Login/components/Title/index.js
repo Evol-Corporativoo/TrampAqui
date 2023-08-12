@@ -1,11 +1,14 @@
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import style from "./style";
 
 export default function Title(){
     return(
         <View style={style.container}>
-            <Text style={style.title}>Registrar-se</Text>
-            <Text style={style.txt}>Para começar a aproveitar todos os recursos e benefícios, siga estes passos simples para criar sua conta:</Text>
+            <View style={style.logo_area}>
+                <Image style={style.logo} source={require(`../../../../../../assets/id/logotransparente.png`)}/>
+                <Image style={style.letreiro} source={require(`../../../../../../assets/id/letreiro.png`)}/>
+            </View>
+            <Text style={style.title}>Login</Text>
         </View>
     )
 }

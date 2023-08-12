@@ -12,7 +12,7 @@ export default function Form(){
     let iconColor
     return(
         <View style={style.container}>
-            <Text style={style.label}>Nome</Text>
+            <Text style={style.label}>E-mail ou CPF</Text>
             <LinearGradient
                 colors={grad}
                 start={start}
@@ -21,10 +21,10 @@ export default function Form(){
                 style={style.input_bg}
             >
                 <TextInput style={style.input}
-                    placeholder='Nome completo'
+                    placeholder='Endereço de e-mail ou CPF'
                 />
             </LinearGradient>
-            <Text style={style.label}>CPF</Text>
+            <Text style={style.label}>Senha</Text>
             <LinearGradient
                 colors={grad}
                 start={start}
@@ -33,68 +33,10 @@ export default function Form(){
                 style={style.input_bg}
             >
                 <TextInput style={style.input}
-                    placeholder='Cpf'
+                    placeholder='Senha'
                 />
             </LinearGradient>
-            <Text style={style.label}>E-Mail</Text>
-            <LinearGradient
-                colors={grad}
-                start={start}
-                end={end}
-                locations={loc}
-                style={style.input_bg}
-            >
-                <TextInput style={style.input} placeholder='Endereço de email'/>
-            </LinearGradient>
-            <Text style={style.label}>Telefone</Text>
-            <LinearGradient
-                colors={grad}
-                start={start}
-                end={end}
-                locations={loc}
-                style={style.input_bg}
-            >
-                <TextInput style={style.input} placeholder='Número de telefone'/>
-            </LinearGradient>
-            <Text style={style.label}>Data de Nascimento</Text>
-            <LinearGradient
-                colors={grad}
-                start={start}
-                end={end}
-                locations={loc}
-                style={style.input_bg}
-            >
-                <TextInput style={style.input} placeholder='DD/MM/AAAA'/>
-            </LinearGradient>
-            <View style={style.check_area}>
-                <BouncyCheckbox
-                    size={25}
-                    fillColor="#141414"
-                    unfillColor="#141414"
-                    iconStyle={{ 
-                        borderColor: "#fff", 
-                        color: '#000', 
-                        borderRadius: 5,
-                        borderWidth: 2,
-                    }}
-                    innerIconStyle={{
-                        borderRadius: 5
-                    }}
-                    onPress={(check) => {
-                        if(check==true){
-                            iconColor='#fff'
-                        } else {
-                            iconColor="#141414"
-                        }
-                    }}
-                    iconComponent={
-                        <Entypo name="check" size={24} color={iconColor} />
-                    }
-                    textStyle={{ fontFamily: "JosefinSans-Regular" }}
-                    disableText={true}
-                />
-                <Text style={style.check_txt}>Deseja receber as últimas atualizações do nosso aplicativo?</Text>
-            </View>
+
         </View>
     )
 }

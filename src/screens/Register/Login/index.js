@@ -6,7 +6,7 @@ import Form from './components/Form'
 import Btn from './components/Btn'
 import Terms from './components/Terms'
 
-export default function SignIn(){
+export default function Login(){
     return(
         <View style={style.container}>
             <Title/>

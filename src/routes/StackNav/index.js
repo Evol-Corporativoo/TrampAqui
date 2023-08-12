@@ -13,11 +13,12 @@ import SignIn from "../../screens/Register/Signin";
 import Confirm from "../../screens/Register/Confirm";
 import PassCode from "../../screens/Register/PassCode";
 import Congrats from "../../screens/Register/Congrats";
+import Login from "../../screens/Register/Login";
 
 export default function Stacks(){
     const Stack = createStackNavigator();
     return(
-        <Stack.Navigator initialRouteName="signin">
+        <Stack.Navigator initialRouteName="login">
             <Stack.Screen
                 name='home'
                 component={Tabs}
@@ -66,6 +67,11 @@ export default function Stacks(){
             <Stack.Screen
                 name='congrats'
                 component={Congrats}
+                options={options.signin}
+            />
+            <Stack.Screen
+                name='login'
+                component={Login}
                 options={options.signin}
             />
         </Stack.Navigator>
