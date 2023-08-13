@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import style from "./style";
 
 export default function Terms(){
@@ -6,7 +6,9 @@ export default function Terms(){
         <View style={style.container}>
             <Text style={style.txt}>
                 Entrar em contato com o
-                <Text style={style.bold}>Suporte</Text>
+                <TouchableOpacity>
+                    <Text style={style.bold}>Suporte</Text>
+                </TouchableOpacity>
             </Text>
         </View>
     )

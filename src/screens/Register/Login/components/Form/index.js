@@ -1,5 +1,5 @@
 import style from './style'
-import { View, TextInput, Text } from 'react-native'
+import { View, TextInput, Text, TouchableOpacity } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { Entypo } from '@expo/vector-icons';
@@ -36,7 +36,9 @@ export default function Form(){
                     placeholder='Senha'
                 />
             </LinearGradient>
-
+            <TouchableOpacity>
+                <Text style={style.span}>Redefinir senha</Text>
+            </TouchableOpacity>
         </View>
     )
 }

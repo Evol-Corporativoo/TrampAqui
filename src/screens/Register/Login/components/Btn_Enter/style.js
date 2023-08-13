@@ -4,7 +4,7 @@ const style = StyleSheet.create({
     bg:{
         borderRadius: 5,
         width: '87vw',
-        height: '5vh',
+        height: '6vh',
         marginTop: '3vh'
     },
     grd:{

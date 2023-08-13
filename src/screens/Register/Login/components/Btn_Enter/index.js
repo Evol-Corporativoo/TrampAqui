@@ -15,7 +15,7 @@ export default function Btn(){
                 start={s}
                 end={e}
             >
-                <Text style={style.txt}>Criar conta</Text>
+                <Text style={style.txt}>Entrar</Text>
             </LinearGradient>
         </TouchableOpacity>
     )

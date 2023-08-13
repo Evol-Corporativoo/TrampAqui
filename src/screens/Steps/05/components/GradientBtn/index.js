@@ -8,7 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 export default function GradientButton(){
     const nav = useNavigation();
     function toNext(){
-        nav.navigate('home')
+        nav.navigate('login')
     }
     return(
         <TouchableOpacity style={style.btn} onPress={toNext}>

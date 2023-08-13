@@ -22,7 +22,7 @@ const style = StyleSheet.create({
     },
     input_bg:{
         borderRadius: 10,
-        height: '6.5vh',
+        height: '5vh',
         width: '',
         justifyContent: 'center',
         alignItems: 'center',
@@ -35,6 +35,11 @@ const style = StyleSheet.create({
         color: "#fff",
         fontSize: '0.9rem',
         marginLeft: '4vw'
+    },
+    span:{
+        color: '#fff',
+        fontSize: '0.9rem',
+        textAlign: 'right'
     }
 })
 
