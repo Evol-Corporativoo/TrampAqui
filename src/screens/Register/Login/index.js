@@ -6,6 +6,7 @@ import Form from './components/Form'
 import Btn from './components/Btn_Enter'
 import Enterprise from './components/Btn_Enterprise'
 import Terms from './components/Terms'
+import Enter from './components/Enter'
 
 export default function Login(){
     return(
@@ -14,6 +15,7 @@ export default function Login(){
             <Form/>
             <Btn/>
             <Enterprise/>
+            <Enter/>
             <Terms/>
         </View>
     )
