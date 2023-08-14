@@ -16,13 +16,13 @@ const style = StyleSheet.create({
     },
     line:{
         borderTopWidth: 2,
-        width: '30%',
+        width: '28%',
         borderTopColor: '#fff'
     },
     title:{
         fontSize: '1rem',
         color: '#fff',
-        textAlign: 'center'
+        textAlign: 'center',
     }
 })
 

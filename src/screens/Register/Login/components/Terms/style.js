@@ -6,7 +6,7 @@ const style = StyleSheet.create({
         height: '5vh',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: '3vh'
+        marginTop: '1vh'
     },
     txt:{
         color: '#fff',

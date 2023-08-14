@@ -12,11 +12,11 @@ const style = StyleSheet.create({
         marginTop: '1vh'
     },
     label:{
-        fontSize: '1.1rem',
-        width: '80%',
+        fontSize: '1rem',
+        width: '90%',
     },
     btn:{
-        width: '80%',
+        width: '85%',
         height: '100%',
         borderRadius: 10,
         justifyContent: 'space-around',
