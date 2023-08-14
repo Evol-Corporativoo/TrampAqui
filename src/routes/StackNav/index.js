@@ -18,7 +18,7 @@ import Login from "../../screens/Register/Login";
 export default function Stacks(){
     const Stack = createStackNavigator();
     return(
-        <Stack.Navigator initialRouteName="login">
+        <Stack.Navigator initialRouteName="step01">
             <Stack.Screen
                 name='home'
                 component={Tabs}
