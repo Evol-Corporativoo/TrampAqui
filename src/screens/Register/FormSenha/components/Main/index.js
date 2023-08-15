@@ -13,9 +13,9 @@ export default function Main(){
     let iconColor
     return(
         <View style={style.container}>
-            <Text style={style.txt}>Assim que você fornecer seu e-mail, enviaremos um código para que possa prosseguir com o processo. Certifique-se de verificar sua caixa de entrada e, se necessário, verifique também a pasta de spam ou lixo eletrônico.</Text>
+            <Text style={style.txt}>Lembre-se de que uma senha forte é essencial para proteger sua conta. Evite reutilizar senhas antigas ou compartilhá-las com outras pessoas.</Text>
             <View style={style.input_area}>
-                <Text style={style.label}>E-mail ou CPF</Text>
+                <Text style={style.label}>Nova senha</Text>
                 <LinearGradient
                     colors={grad}
                     start={start}
@@ -24,7 +24,19 @@ export default function Main(){
                     style={style.input_bg}
                 >
                     <TextInput style={style.input}
-                        placeholder='Endereço de e-mail ou CPF'
+                        placeholder='Senha'
+                    />
+                </LinearGradient>
+                <Text style={style.label}>Confirmar senha</Text>
+                <LinearGradient
+                    colors={grad}
+                    start={start}
+                    end={end}
+                    locations={loc}
+                    style={style.input_bg}
+                >
+                    <TextInput style={style.input}
+                        placeholder='Reescreva a nova senha'
                     />
                 </LinearGradient>
             </View>

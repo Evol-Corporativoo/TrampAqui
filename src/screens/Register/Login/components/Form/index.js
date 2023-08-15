@@ -4,12 +4,18 @@ import { LinearGradient } from 'expo-linear-gradient'
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { Entypo } from '@expo/vector-icons';
 
+import { useNavigation } from '@react-navigation/native';
+
 export default function Form(){
     const grad = ['#00FEA0', 'rgba(89,140,239,0.3)']
     const start = {x: 0, y: 0.5}
     const end = {x: 1, y: 0.5}
     const loc = [0.8, 1]
     let iconColor
+    const nav = useNavigation()
+    function n(){
+        nav.navigate('reqpass')
+    }
     return(
         <View style={style.container}>
             <Text style={style.label}>E-mail ou CPF</Text>
@@ -36,7 +42,7 @@ export default function Form(){
                     placeholder='Senha'
                 />
             </LinearGradient>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={n}>
                 <Text style={style.span}>Redefinir senha</Text>
             </TouchableOpacity>
         </View>

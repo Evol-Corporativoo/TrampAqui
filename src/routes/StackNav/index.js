@@ -14,6 +14,8 @@ import Confirm from "../../screens/Register/Confirm";
 import PassCode from "../../screens/Register/PassCode";
 import Congrats from "../../screens/Register/Congrats";
 import Login from "../../screens/Register/Login";
+import ReqPass from "../../screens/Register/ReqPass";
+import FormSenha from "../../screens/Register/FormSenha";
 
 export default function Stacks(){
     const Stack = createStackNavigator();
@@ -72,6 +74,16 @@ export default function Stacks(){
             <Stack.Screen
                 name='login'
                 component={Login}
+                options={options.signin}
+            />
+            <Stack.Screen
+                name='reqpass'
+                component={ReqPass}
+                options={options.signin}
+            />
+            <Stack.Screen
+                name='formsenha'
+                component={FormSenha}
                 options={options.signin}
             />
         </Stack.Navigator>

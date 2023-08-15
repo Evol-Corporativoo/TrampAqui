@@ -4,7 +4,7 @@ import { View } from 'react-native'
 import Header from './components/Header'
 import Main from './components/Main'
 
-export default function Confirm(){
+export default function ReqPass(){
     return(
         <View style={style.container}>
             <Header/>

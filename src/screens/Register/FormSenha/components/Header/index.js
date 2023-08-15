@@ -5,7 +5,7 @@ export default function Header(){
     return(
         <View style={style.container}>
             <Text style={style.title}>Redefinir senha</Text>
-            <Image style={style.img} source={require(`../../../../../../assets/img/8.png`)}/>
+            <Image style={style.img} source={require(`../../../../../../assets/img/9.png`)}/>
         </View>
     )
 }

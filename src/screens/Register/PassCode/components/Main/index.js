@@ -21,7 +21,7 @@ export default function Main(){
                 <TextInput style={style.code_input}/>
                 <TextInput style={style.code_input}/>
             </View>
-            <Text style={style.send}>Redefinir senha</Text>
+            <Text style={style.send}>Receber código</Text>
             <Btn/>
             <Text style={[style.txt, style.send, style.support]}>Entrar em contato com o <Text style={style.bold}>Suporte</Text></Text>
         </View>

@@ -10,7 +10,7 @@ export default function Btn(){
     const e = {x:1,y:0.5}
     const nav = useNavigation()
     function n(){
-        nav.navigate('passcode')
+        nav.navigate('login')
     }
     return(
         <TouchableOpacity style={style.bg} onPress={n}>
