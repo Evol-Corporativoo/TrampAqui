@@ -28,7 +28,7 @@ export default function CardArea(){
             <View style={[style.row]}>
                 <TouchableOpacity>
                     <View style={style.card}>
-                        <Octicons name={'briefcase'} size={'2.6em'} color={style.icon.color}/>
+                        <Octicons name={'briefcase'} size={'2.3em'} color={style.icon.color}/>
                         <View style={style.div}/>
                         <Text style={style.title}>Vagas próximas de mim</Text>
                     </View>

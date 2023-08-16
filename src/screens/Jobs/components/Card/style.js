@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 const style = StyleSheet.create({
     container:{
         width: '90vw',
-        height: '15vh',
+        height: '16vh',
         flexDirection: 'row',
         backgroundColor: '#fff',
         borderRadius: 20,

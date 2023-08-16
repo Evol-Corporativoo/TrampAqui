@@ -15,13 +15,15 @@ const style = StyleSheet.create({
         color: '#fff',
         fontSize: '1em',
         textAlign: 'center',
+        marginBottom: '2vh'
     },
     destaque:{
         color: '#fff',
         fontWeight: 'bold',
         fontSize: '1.1em',
         textAlign: 'center',
-        marginTop: '2vh'
+        marginTop: '3vh',
+        marginBottom: '2vh',
     },
     textarea:{
         alignItems: 'center',

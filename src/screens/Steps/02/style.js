@@ -15,6 +15,7 @@ const style = StyleSheet.create({
         color: '#fff',
         fontSize: '1rem',
         textAlign: 'center',
+        marginBottom: '2vh'
     },
     destaque:{
         color: '#fff',
@@ -24,7 +25,7 @@ const style = StyleSheet.create({
     },
     textarea:{
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         height: '34vh',
         width: '90vw',
         marginBottom: '16vh'

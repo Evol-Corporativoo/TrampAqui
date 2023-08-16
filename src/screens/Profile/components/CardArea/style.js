@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 const style = StyleSheet.create({
     container:{
-
+      
     },
     row:{
         flexDirection: 'row',
@@ -11,6 +11,7 @@ const style = StyleSheet.create({
         height: '20vh',
         paddingRight: '7vw',
         paddingLeft: '7vw',
+        marginBottom: '1vh'
     },
     card:{
         width: '40vw',
@@ -30,7 +31,7 @@ const style = StyleSheet.create({
     title:{
         color: '#000',
         fontWeight: '600',
-        fontSize: '1.4em',
+        fontSize: '1.2em',
         textAlign: 'center'
     },
     subtitle:{
@@ -38,7 +39,7 @@ const style = StyleSheet.create({
         fontWeight: '200'
     },
     icon: {
-        size: '3em',
+        size: '2.5em',
         color: '#000',
     },
     div:{

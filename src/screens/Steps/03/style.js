@@ -13,7 +13,7 @@ const style = StyleSheet.create({
     },
     txt:{
         color: '#fff',
-        fontSize: '0.95rem',
+        fontSize: '1rem',
         textAlign: 'center',
     },
     destaque:{
@@ -21,6 +21,7 @@ const style = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: '1.1em',
         textAlign: 'center',
+        marginTop: '5vh'
     },
     textarea:{
         alignItems: 'center',

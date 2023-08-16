@@ -13,14 +13,17 @@ const style = StyleSheet.create({
     },
     txt:{
         color: '#fff',
-        fontSize: '0.9em',
+        fontSize: '1rem',
         textAlign: 'center',
+        marginBottom: '2vh'
     },
     destaque:{
         color: '#fff',
         fontWeight: 'bold',
         fontSize: '1.1em',
         textAlign: 'center',
+        marginTop: '2vh',
+        marginBottom: '3vh',
     },
     textarea:{
         alignItems: 'center',
