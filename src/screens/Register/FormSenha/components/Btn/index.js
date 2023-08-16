@@ -20,7 +20,7 @@ export default function Btn(){
                 start={s}
                 end={e}
             >
-                <Text style={style.txt}>Receber código</Text>
+                <Text style={style.txt}>Redefinir</Text>
             </LinearGradient>
         </TouchableOpacity>
     )
