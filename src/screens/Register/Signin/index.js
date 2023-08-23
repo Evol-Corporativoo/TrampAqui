@@ -11,7 +11,6 @@ export default function SignIn(){
         <View style={style.container}>
             <Title/>
             <Form/>
-            <Btn/>
             <Terms/>
         </View>
     )

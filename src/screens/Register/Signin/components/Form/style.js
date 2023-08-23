@@ -4,6 +4,7 @@ const style = StyleSheet.create({
     container:{
         width: '90vw',
         marginTop: '1vh',
+        overflow: 'scroll',
     },
     label:{
         color: '#fff',
@@ -35,6 +36,22 @@ const style = StyleSheet.create({
         color: "#fff",
         fontSize: '0.9rem',
         marginLeft: '4vw'
+    },
+    bg:{
+        borderRadius: 5,
+        width: '87vw',
+        height: '5vh',
+        marginTop: '3vh'
+    },
+    grd:{
+        flex: 1,
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    txt:{
+        color: '#fff',
+        fontSize: '1.3rem'
     }
 })
 

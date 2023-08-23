@@ -20,7 +20,7 @@ import FormSenha from "../../screens/Register/FormSenha";
 export default function Stacks(){
     const Stack = createStackNavigator();
     return(
-        <Stack.Navigator initialRouteName="step01">
+        <Stack.Navigator initialRouteName="signin">
             <Stack.Screen
                 name='home'
                 component={Tabs}
