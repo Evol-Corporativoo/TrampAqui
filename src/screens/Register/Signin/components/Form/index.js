@@ -39,6 +39,10 @@ export default function Form(){
         signin(array)
     }
 
+    // function console(){
+    //     console.log(telefone)
+    // }
+
     return(
         <View style={style.container}>
             <Text style={style.label}>Nome</Text>
@@ -51,7 +55,7 @@ export default function Form(){
             >
                 <TextInput style={style.input}
                     placeholder='Nome completo'
-                    onChangeText={setNome}
+                    onChangeText={(text)=>{setNome(text)}}
                 />
             </LinearGradient>
             <Text style={style.label}>CPF</Text>
@@ -64,7 +68,7 @@ export default function Form(){
             >
                 <TextInput style={style.input}
                     placeholder='Cpf'
-                    onChangeText={setCpf}
+                    onChangeText={(text)=>{setCpf(text)}}
                 />
             </LinearGradient>
             <Text style={style.label}>E-Mail</Text>
@@ -76,7 +80,7 @@ export default function Form(){
                 style={style.input_bg}
             >
                 <TextInput style={style.input} placeholder='Endereço de email'
-                    onChangeText={setEmail}
+                    onChangeText={(text)=>{setEmail(text)}}
                 />
             </LinearGradient>
             <Text style={style.label}>Senha</Text>
@@ -88,7 +92,7 @@ export default function Form(){
                 style={style.input_bg}
             >
                 <TextInput style={style.input} placeholder='Crie sua senha'
-                    onChangeText={setSenha}
+                    onChangeText={(text)=>{setSenha(text)}}
                 />
             </LinearGradient>
             <Text style={style.label}>Confirmar senha</Text>
@@ -100,7 +104,7 @@ export default function Form(){
                 style={style.input_bg}
             >
                 <TextInput style={style.input} placeholder='Repita a senha criada'
-                    onChangeText={setEmail}
+                    onChangeText={(text)=>{setConfirm(text)}}
                 />
             </LinearGradient>
             <Text style={style.label}>Telefone</Text>
@@ -112,7 +116,9 @@ export default function Form(){
                 style={style.input_bg}
             >
                 <TextInput style={style.input} placeholder='Número de telefone'
-                    onChangeText={setTelefone}
+                    onChangeText={(text)=>{
+                        setTelefone(text)
+                    }}
                 />
             </LinearGradient>
             <Text style={style.label}>Data de Nascimento</Text>
@@ -124,7 +130,7 @@ export default function Form(){
                 style={style.input_bg}
             >
                 <TextInput style={style.input} placeholder='DD/MM/AAAA'
-                    onChangeText={setDataNasc}
+                    onChangeText={(text)=>setDataNasc(text)}
                 />
             </LinearGradient>
             <View style={style.check_area}>

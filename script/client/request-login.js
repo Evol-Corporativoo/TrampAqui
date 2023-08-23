@@ -1,6 +1,6 @@
-export default function signin(data){
+export default function login(data){
 
-    let url = 'http://localhost/trampaqui/controller/cadastrar.php'
+    let url = 'http://localhost/trampaqui/controller/login.php'
     let options = {
         method: 'POST',
         mode: 'no-cors',
@@ -10,12 +10,10 @@ export default function signin(data){
         body: JSON.stringify(data)
     }
 
-    console.log(options,url)
-
     fetch(url, options)
     .then(response => response.json())
     .then(response =>{
-        console.log(response);
+        return response;
     })
     .catch(error=>{
         console.error('Explodiu o negócio aqui: ',error)
