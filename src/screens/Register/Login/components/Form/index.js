@@ -3,6 +3,7 @@ import { View, TextInput, Text, TouchableOpacity } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { Entypo } from '@expo/vector-icons';
+import {useState} from 'react'; 
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -16,6 +17,10 @@ export default function Form(){
     function n(){
         nav.navigate('reqpass')
     }
+
+    const [usuario,setUsuario] = useState()
+    const [senha,setSenha] = useState()
+
     return(
         <View style={style.container}>
             <Text style={style.label}>E-mail ou CPF</Text>
@@ -28,6 +33,7 @@ export default function Form(){
             >
                 <TextInput style={style.input}
                     placeholder='Endereço de e-mail ou CPF'
+                    onChangeText={(text)=>setUsuario(text)}
                 />
             </LinearGradient>
             <Text style={style.label}>Senha</Text>
@@ -40,6 +46,7 @@ export default function Form(){
             >
                 <TextInput style={style.input}
                     placeholder='Senha'
+                    onChangeText={(text)=>setSenha(text)}
                 />
             </LinearGradient>
             <TouchableOpacity onPress={n}>
