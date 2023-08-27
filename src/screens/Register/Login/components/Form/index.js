@@ -4,6 +4,8 @@ import { LinearGradient } from 'expo-linear-gradient'
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { Entypo } from '@expo/vector-icons';
 import {useState} from 'react'; 
+import Btn from '../Btn_Enter';
+import Empresa from '../Btn_Enterprise'
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -52,6 +54,11 @@ export default function Form(){
             <TouchableOpacity onPress={n}>
                 <Text style={style.span}>Redefinir senha</Text>
             </TouchableOpacity>
+            <Btn
+                user={usuario}
+                senha={senha}
+            />
+            <Empresa/>
         </View>
     )
 }

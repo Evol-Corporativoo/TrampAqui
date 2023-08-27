@@ -17,7 +17,7 @@ export default function Form(){
     const e = {x:1,y:0.5}
     const n = useNavigation()
     function nav(){
-        n.navigate('confirm')
+        n.navigate('login')
     }
 
     const grad = ['#00FEA0', 'rgba(89,140,239,0.3)']
@@ -37,6 +37,7 @@ export default function Form(){
     function cadastrar(){
         let array = [nome,cpf,email,senha,telefone,dataNasc]
         signin(array)
+        nav()
     }
 
     // function console(){

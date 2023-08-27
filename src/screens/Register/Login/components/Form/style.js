@@ -4,6 +4,8 @@ const style = StyleSheet.create({
     container:{
         width: '90vw',
         marginTop: '1vh',
+        justifyContent: 'center',
+        display: 'flex'
     },
     label:{
         color: '#fff',
