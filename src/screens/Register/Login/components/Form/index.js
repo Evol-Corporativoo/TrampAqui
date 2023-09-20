@@ -49,6 +49,7 @@ export default function Form(){
                 <TextInput style={style.input}
                     placeholder='Senha'
                     onChangeText={(text)=>setSenha(text)}
+                    secureTextEntry={true}
                 />
             </LinearGradient>
             <TouchableOpacity onPress={n}>

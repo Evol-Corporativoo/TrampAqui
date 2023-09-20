@@ -1,13 +1,12 @@
 import style from './style'
-import { View, TextInput, Text, TouchableOpacity } from 'react-native'
+import { View, TextInput, Text, TouchableOpacity, Alert } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { Entypo } from '@expo/vector-icons';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
-import Btn from '../Btn';
-import signin from '../../../../../../script/client/request-signin';
+import { RegisterContext } from '../../../../../../data/context';
 
 export default function Form(){
 
@@ -33,11 +32,21 @@ export default function Form(){
     const [confirm, setConfirm] = useState();
     const [telefone, setTelefone] = useState();
     const [dataNasc, setDataNasc] = useState();
+    const [alert,setAlert] = useState();
+
+    const {signin} = useContext(RegisterContext)
 
     function cadastrar(){
-        let array = [nome,cpf,email,senha,telefone,dataNasc]
-        signin(array)
-        nav()
+        let object = [
+            nome,
+            cpf,
+            email,
+            senha,
+            telefone,
+            dataNasc
+        ]
+
+        signin(object)
     }
 
     // function console(){
@@ -94,6 +103,7 @@ export default function Form(){
             >
                 <TextInput style={style.input} placeholder='Crie sua senha'
                     onChangeText={(text)=>{setSenha(text)}}
+                    secureTextEntry={true}
                 />
             </LinearGradient>
             <Text style={style.label}>Confirmar senha</Text>
@@ -106,6 +116,7 @@ export default function Form(){
             >
                 <TextInput style={style.input} placeholder='Repita a senha criada'
                     onChangeText={(text)=>{setConfirm(text)}}
+                    secureTextEntry={true}
                 />
             </LinearGradient>
             <Text style={style.label}>Telefone</Text>

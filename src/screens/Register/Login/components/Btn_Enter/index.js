@@ -2,7 +2,9 @@ import { TouchableOpacity, Text } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import style from './style'
 import { useNavigation } from '@react-navigation/native'
-import login from '../../../../../../script/client/request-login'
+
+import { useContext } from 'react'
+import { RegisterContext } from '../../../../../../data/context'
 
 export default function Btn(props){
     const c = ['#00FEA0','rgba(42,201,197,0.5)']
@@ -10,23 +12,11 @@ export default function Btn(props){
     const s = {x:0, y:0.5}
     const e = {x:1,y:0.5}
 
-    function entrar(){
-        let response = login([props.user, props.senha])
-        console.log(response)
-        if(response==true){
-            nav('home')
-        } else {
-            console.log('Dados inválidos')
-        }
-    }
-
-    const nav = useNavigation()
-    function navLogin(){
-        nav.navigate('home')
-    }
+    
+    const {login} = useContext(RegisterContext)
 
     return(
-        <TouchableOpacity onPress={entrar} style={style.bg}>
+        <TouchableOpacity onPress={login([props.user,props.senha])} style={style.bg}>
             <LinearGradient style={style.grd}
                 colors={c}
                 locations={l}
