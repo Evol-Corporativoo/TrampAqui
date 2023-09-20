@@ -7,6 +7,7 @@ class Usuario {
     private $cpf;
     private $email;
     private $senha;
+    private $telefone;
     private $acesso;
 
     public function getCpf(){
@@ -15,6 +16,14 @@ class Usuario {
 
     public function setCpf($cpf){
         $this->cpf = $cpf;
+    }
+
+    public function getTelefone(){
+        return $this->telefone;
+    }
+
+    public function setTelefone($telefone){
+        $this->telefone = $telefone;
     }
 
     // Getter para $id

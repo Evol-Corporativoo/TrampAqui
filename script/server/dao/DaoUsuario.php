@@ -8,18 +8,19 @@
         public static function cadastrar(Usuario $usuario){
 
             $conexao = Conexao::conectar();
-            $insert = 'INSERT INTO tbUsuario(nomeUsuario, cpfUsuario, dataNascUsuario, senhaUsuario, emailUsuario)
-                       VALUES (?,?,?,?,?)';
+            $insert = 'INSERT INTO tbUsuario(nomeUsuario, cpfUsuario, dataNascUsuario, senhaUsuario, emailUsuario, telefoneUsuario)
+                       VALUES (?,?,?,?,?,?)';
             $prepare = $conexao->prepare($insert);
             $prepare->bindValue(1, $usuario->getNome());
             $prepare->bindValue(2, $usuario->getCpf());
             $prepare->bindValue(3, $usuario->getDataNasc());
-            $prepare->bindValue(4, $usuario->getEmail());
-            $prepare->bindValue(5, $usuario->getSenha());
+            $prepare->bindValue(4, $usuario->getSenha());
+            $prepare->bindValue(5, $usuario->getEmail());
+            $prepare->bindValue(6, $usuario->getTelefone());
 
             $prepare->execute();
 
-            return true;
+            return json_encode('true');
 
         }
 
@@ -27,13 +28,15 @@
 
             $conexao = Conexao::conectar();
             if($usuario->getEmail()==null && $usuario->getCpf()!=null){
-                $select = 'SELECT (cpfUsuario, senhaUsuario) FROM tbUsuario WHERE cpfUsuario = ?';
+                $select = 'SELECT (cpfUsuario, senhaUsuario) FROM tbUsuario WHERE cpfUsuario LIKE ? AND senhaUsuario LIKE ?';
                 $prepare = $conexao->prepare($select);
                 $prepare->bindValue(1,$usuario->getCpf());
+                $prepare->bindValue(2,$usuario->getSenha());
             } else {
-                $select = 'SELECT (emailUsuario, senhaUsuario) FROM tbUsuario WHERE emailUsuario = ?';
+                $select = 'SELECT (emailUsuario, senhaUsuario) FROM tbUsuario WHERE emailUsuario LIKE ? AND senhaUsuario LIKE ?';
                 $prepare = $conexao->prepare($select);
                 $prepare->bindValue(1,$usuario->getEmail());
+                $prepare->bindValue(2,$usuario->getSenha());
             }
 
             $prepare->execute();
