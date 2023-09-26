@@ -17,7 +17,6 @@ export default function Btn(props){
     function logar(){
         let data = [props.user,props.senha]
         login(data)
-        console.log(user)
     }
 
     return(

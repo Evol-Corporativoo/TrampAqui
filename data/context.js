@@ -1,5 +1,6 @@
-import { useContext, useState, createContext } from "react";
+import { useContext, useState, createContext, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const RegisterContext = createContext({})
 
@@ -7,6 +8,20 @@ export function RegisterProvider({children}){
 
     const [user,setUser] = useState({});
     const nav = useNavigation();
+
+    useEffect(()=>{
+
+        async function buscarUsuario(){
+          let json_usuario = await AsyncStorage.getItem('usuario')
+          if(json_usuario != null){
+            let n_usuario = JSON.parse(json_usuario)
+            setUser(n_usuario)
+          }
+        }
+    
+        buscarUsuario()
+    
+      },[])
 
     function signin(data){
 
@@ -44,8 +59,14 @@ export function RegisterProvider({children}){
         fetch(url, options)
         .then(response => response.json())
         .then(response =>{
-            console.log(response)
-            setUser(response)
+           if(typeof response == 'object'){
+            let json_user = JSON.stringify(response)
+            async function gravarUsuario(){
+                await AsyncStorage.setItem('usuario',json_user)
+            }
+            gravarUsuario()
+            nav.navigate('home')
+           }
         })
         .catch(error=>{
             console.error('Explodiu o negócio aqui: ',error)
@@ -53,7 +74,7 @@ export function RegisterProvider({children}){
     }
 
     return(
-        <RegisterContext.Provider value={{signin,login,setUser}}>
+        <RegisterContext.Provider value={{signin,login,user}}>
             {children}
         </RegisterContext.Provider>
     )
