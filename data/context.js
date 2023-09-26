@@ -16,6 +16,7 @@ export function RegisterProvider({children}){
           if(json_usuario != null){
             let n_usuario = JSON.parse(json_usuario)
             setUser(n_usuario)
+            console.log(n_usuario)
             nav.navigate('login')
           }
         }
@@ -26,7 +27,7 @@ export function RegisterProvider({children}){
 
     async function logout(){
 
-        await AsyncStorage.setItem('usuario',null)
+        await AsyncStorage.removeItem('usuario')
         nav.navigate('login')
 
     }
@@ -46,10 +47,11 @@ export function RegisterProvider({children}){
         .then(response => response.json())
         .then(response => {
             console.log(response)
+            
         })
         .then(error=> console.error(error))
 
-        //nav.navigate('login')
+        nav.navigate('login')
 
     }
 
@@ -70,10 +72,10 @@ export function RegisterProvider({children}){
            if(typeof response == 'object'){
             let json_user = JSON.stringify(response)
             async function gravarUsuario(){
-                await AsyncStorage.setItem('usuario',json_user)
+                AsyncStorage.setItem('usuario',json_user)
+                nav.navigate('home')
             }
             gravarUsuario()
-            nav.navigate('home')
            }
         })
         .catch(error=>{
