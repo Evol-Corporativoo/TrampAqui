@@ -18,7 +18,7 @@ export function RegisterProvider({children}){
             },
             body: JSON.stringify(data)
         }
-        let url = 'http://localhost/server/controller/registrarUsuario.php'
+        let url = 'http://localhost/tramp/controller/cadastrar.php'
         fetch(url, fetchOptions)
         .then(response => response.json())
         .then(response => {
@@ -31,7 +31,7 @@ export function RegisterProvider({children}){
     }
 
     function login(data){
-        let url = 'http://localhost/trampaqui/controller/login.php'
+        let url = 'http://localhost/tramp/controller/obter-usuario.php'
         let options = {
             method: 'POST',
             mode: 'cors',
@@ -45,6 +45,7 @@ export function RegisterProvider({children}){
         .then(response => response.json())
         .then(response =>{
             console.log(response)
+            setUser(response)
         })
         .catch(error=>{
             console.error('Explodiu o negócio aqui: ',error)
@@ -52,7 +53,7 @@ export function RegisterProvider({children}){
     }
 
     return(
-        <RegisterContext.Provider value={{signin,login}}>
+        <RegisterContext.Provider value={{signin,login,setUser}}>
             {children}
         </RegisterContext.Provider>
     )

@@ -13,10 +13,15 @@ export default function Btn(props){
     const e = {x:1,y:0.5}
 
     
-    const {login} = useContext(RegisterContext)
+    const {login, user} = useContext(RegisterContext)
+    function logar(){
+        let data = [props.user,props.senha]
+        login(data)
+        console.log(user)
+    }
 
     return(
-        <TouchableOpacity onPress={login([props.user,props.senha])} style={style.bg}>
+        <TouchableOpacity onPress={logar} style={style.bg}>
             <LinearGradient style={style.grd}
                 colors={c}
                 locations={l}
