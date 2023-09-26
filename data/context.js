@@ -16,12 +16,20 @@ export function RegisterProvider({children}){
           if(json_usuario != null){
             let n_usuario = JSON.parse(json_usuario)
             setUser(n_usuario)
+            nav.navigate('login')
           }
         }
     
         buscarUsuario()
     
       },[])
+
+    async function logout(){
+
+        await AsyncStorage.setItem('usuario',null)
+        nav.navigate('login')
+
+    }
 
     function signin(data){
 
@@ -41,7 +49,7 @@ export function RegisterProvider({children}){
         })
         .then(error=> console.error(error))
 
-        nav.navigate('login')
+        //nav.navigate('login')
 
     }
 
@@ -74,7 +82,7 @@ export function RegisterProvider({children}){
     }
 
     return(
-        <RegisterContext.Provider value={{signin,login,user}}>
+        <RegisterContext.Provider value={{signin,login,user,logout}}>
             {children}
         </RegisterContext.Provider>
     )
