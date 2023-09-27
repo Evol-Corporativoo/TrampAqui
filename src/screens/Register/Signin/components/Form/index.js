@@ -7,6 +7,7 @@ import { useState, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import { RegisterContext } from '../../../../../../data/context';
+import mascaraCPF from '../../../../../../script/client/cpf-mask';
 
 export default function Form(){
 
@@ -33,6 +34,7 @@ export default function Form(){
     const [telefone, setTelefone] = useState();
     const [dataNasc, setDataNasc] = useState();
     const [alert,setAlert] = useState();
+    const [isValidCpf,setIsValid] = useState();
 
     const {signin} = useContext(RegisterContext)
 
@@ -45,8 +47,10 @@ export default function Form(){
             telefone,
             dataNasc
         ]
-
-        signin(object)
+        if(isValidCpf == true && senha == confirm){
+            signin(object)
+        }
+        
     }
 
     // function console(){
@@ -78,7 +82,12 @@ export default function Form(){
             >
                 <TextInput style={style.input}
                     placeholder='Cpf'
-                    onChangeText={(text)=>{setCpf(text)}}
+                    onChangeText={(text)=>{
+                        setCpf(text)
+                        setIsValid(mascaraCPF(text))
+                    }}
+                    //value={cpf}
+                    keyboardType="numeric"
                 />
             </LinearGradient>
             <Text style={style.label}>E-Mail</Text>

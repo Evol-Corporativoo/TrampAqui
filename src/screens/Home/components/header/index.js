@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 
 import style from './style';
@@ -12,6 +12,10 @@ import Notifications from '../../../../routes/TabNav/Notfications';
 export default function Header(){
 
     const {user} = useContext(RegisterContext)
+
+    useEffect(()=>{
+        
+    },[])
     
     return(
         <View style={style.container}>

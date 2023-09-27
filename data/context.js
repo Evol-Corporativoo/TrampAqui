@@ -6,7 +6,7 @@ export const RegisterContext = createContext({})
 
 export function RegisterProvider({children}){
 
-    const [user,setUser] = useState({});
+    const [user,setUser] = useState();
     const nav = useNavigation();
 
     useEffect(()=>{
@@ -27,7 +27,8 @@ export function RegisterProvider({children}){
 
     async function logout(){
 
-        await AsyncStorage.removeItem('usuario')
+        AsyncStorage.removeItem('usuario')
+        setUser(null)
         nav.navigate('login')
 
     }
@@ -42,7 +43,7 @@ export function RegisterProvider({children}){
             },
             body: JSON.stringify(data)
         }
-        let url = 'http://localhost/tramp/controller/cadastrar.php'
+        let url = 'http://localhost/server/controller/cadastrar.php'
         fetch(url, fetchOptions)
         .then(response => response.json())
         .then(response => {
@@ -56,7 +57,7 @@ export function RegisterProvider({children}){
     }
 
     function login(data){
-        let url = 'http://localhost/tramp/controller/obter-usuario.php'
+        let url = 'http://localhost/server/controller/obter-usuario.php'
         let options = {
             method: 'POST',
             mode: 'cors',
@@ -73,7 +74,10 @@ export function RegisterProvider({children}){
             let json_user = JSON.stringify(response)
             async function gravarUsuario(){
                 AsyncStorage.setItem('usuario',json_user)
-                nav.navigate('home')
+                let log_user = AsyncStorage.getItem('usuario')
+                if(typeof log_user == 'object'){
+                    nav.navigate('home')
+                }
             }
             gravarUsuario()
            }
