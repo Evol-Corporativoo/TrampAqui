@@ -16,10 +16,14 @@ yarn add @react-navigation/native
 yarn add @react-navigation/bottom-tabs
 yarn add @react-navigation/stack
 yarn add react-native-bouncy-checkbox
-npx expo install react-native-screens react-native-safe-area-context
-npx expo install react-native-gesture-handler react-native-reanimated@~2.14.4
-npx expo install expo-linear-gradient react-native-web@~0.18.10
-npx expo install react-dom@18.2.0 @expo/webpack-config@^18.0.1
+yarn add @react-native-async-storage/async-storage
+yarn add react-native-screens 
+yarn add react-native-safe-area-context
+yarn add react-native-gesture-handler 
+yarn add react-native-reanimated@~2.14.4
+yarn add expo-linear-gradient 
+yarn add react-native-web@~0.18.10
+yarn add react-dom@18.2.0 @expo/webpack-config@^18.0.1
 ```
 ---
 
