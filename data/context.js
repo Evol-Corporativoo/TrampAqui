@@ -26,7 +26,7 @@ export function RegisterProvider({children}){
     async function logout(){
 
         AsyncStorage.removeItem('usuario')
-        setUser(null)
+        setUser({})
         nav.navigate('login')
 
     }
@@ -35,13 +35,13 @@ export function RegisterProvider({children}){
 
         let fetchOptions = {
             method: 'POST',
-            mode: 'no-cors',
+            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         }
-        let url = 'http://localhost/server/controller/cadastrar.php'
+        let url = 'http://localhost/server/app/controller/cadastrar.php'
         fetch(url, fetchOptions)
         .then(response => response.json())
         .then(response => {
@@ -55,7 +55,7 @@ export function RegisterProvider({children}){
     }
 
     function login(data){
-        let url = 'http://localhost/server/controller/obter-usuario.php'
+        let url = 'http://localhost/server/app/controller/obter-usuario.php'
         let options = {
             method: 'POST',
             mode: 'cors',
@@ -71,11 +71,10 @@ export function RegisterProvider({children}){
            if(typeof response == 'object'){
             let json_user = JSON.stringify(response)
             async function gravarUsuario(){
-                AsyncStorage.setItem('usuario',json_user)
+                await AsyncStorage.setItem('usuario',json_user)
                 let log_user = AsyncStorage.getItem('usuario')
-                if(typeof log_user == 'object'){
-                    nav.navigate('home')
-                }
+                setUser(log_user)
+                nav.navigate('login')
             }
             gravarUsuario()
            }
