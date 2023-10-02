@@ -16,8 +16,6 @@ export function RegisterProvider({children}){
           if(json_usuario != null){
             let n_usuario = JSON.parse(json_usuario)
             setUser(n_usuario)
-            console.log(n_usuario)
-            nav.navigate('login')
           }
         }
     
@@ -52,7 +50,7 @@ export function RegisterProvider({children}){
         })
         .then(error=> console.error(error))
 
-        nav.navigate('login')
+        //nav.navigate('login')
 
     }
 
