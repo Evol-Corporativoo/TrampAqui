@@ -12,8 +12,14 @@
 ---
 3. Baixar as bibliotecas necessárias para o projeto
 ```sh
-yarn add @react-navigation/native @react-navigation/bottom-tabs @react-navigation/stack react-native-bouncy-checkbox
-npx expo install react-native-screens react-native-safe-area-context react-native-gesture-handler react-native-reanimated@~2.14.4 expo-linear-gradient react-native-web@~0.18.10 react-dom@18.2.0 @expo/webpack-config@^18.0.1
+yarn add @react-navigation/native
+yarn add @react-navigation/bottom-tabs
+yarn add @react-navigation/stack
+yarn add react-native-bouncy-checkbox
+npx expo install react-native-screens react-native-safe-area-context
+npx expo install react-native-gesture-handler react-native-reanimated@~2.14.4
+npx expo install expo-linear-gradient react-native-web@~0.18.10
+npx expo install react-dom@18.2.0 @expo/webpack-config@^18.0.1
 ```
 ---
 
