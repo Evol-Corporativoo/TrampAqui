@@ -16,9 +16,9 @@ export default function Form(){
     const s = {x:0, y:0.5}
     const e = {x:1,y:0.5}
     const n = useNavigation()
-    function nav(){
-        n.navigate('login')
-    }
+    // function nav(){
+    //     n.navigate('login')
+    // }
 
     const grad = ['#00FEA0', 'rgba(89,140,239,0.3)']
     const start = {x: 0, y: 0.5}
