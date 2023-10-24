@@ -21,7 +21,7 @@ export default function Results(){
                 <Card
                     id={item.idVaga}
                     nome={item.nomeVaga}
-                    salario={item.salario}
+                    salario={item.salarioVaga}
                 />
             )}
         />

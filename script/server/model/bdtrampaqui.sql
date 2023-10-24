@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23/08/2023 às 12:38
+-- Tempo de geração: 25/10/2023 às 01:02
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -45,7 +45,7 @@ CREATE TABLE `tbcurriculo` (
 CREATE TABLE `tbempresa` (
   `idEmpresa` int(11) NOT NULL,
   `nomeEmpresa` varchar(200) NOT NULL,
-  `cnpjEmpresa` int(11) NOT NULL,
+  `cnpjEmpresa` varchar(30) NOT NULL,
   `cepEmpresa` varchar(10) NOT NULL,
   `dataCriacaoEmpresa` date NOT NULL,
   `emailEmpresa` varchar(140) NOT NULL,
@@ -148,7 +148,7 @@ CREATE TABLE `tbusuario` (
   `telefoneUsuario` varchar(30) NOT NULL,
   `dataNascUsuario` date NOT NULL,
   `tipoUsuario` bit(1) NOT NULL,
-  `senhaUsuario` varchar(20) NOT NULL
+  `senhaUsuario` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -159,11 +159,12 @@ CREATE TABLE `tbusuario` (
 
 CREATE TABLE `tbvaga` (
   `idVaga` int(11) NOT NULL,
-  `descVaga` varchar(80) NOT NULL,
+  `nomeVaga` varchar(100) NOT NULL,
+  `descVaga` varchar(300) NOT NULL,
   `cargoVaga` varchar(30) NOT NULL,
   `cargaHorariaVaga` time NOT NULL,
+  `salarioVaga` double NOT NULL,
   `sobreVaga` varchar(500) NOT NULL,
-  `idCurriculo` int(11) NOT NULL,
   `idEmpresa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -183,6 +184,7 @@ ALTER TABLE `tbcurriculo`
 --
 ALTER TABLE `tbempresa`
   ADD PRIMARY KEY (`idEmpresa`),
+  ADD UNIQUE KEY `cnpjEmpresa` (`cnpjEmpresa`),
   ADD KEY `fk_idUsuario` (`idUsuario`);
 
 --
@@ -224,14 +226,14 @@ ALTER TABLE `tbtrabvoluntario`
 -- Índices de tabela `tbusuario`
 --
 ALTER TABLE `tbusuario`
-  ADD PRIMARY KEY (`idUsuario`);
+  ADD PRIMARY KEY (`idUsuario`),
+  ADD UNIQUE KEY `unique_email` (`emailUsuario`);
 
 --
 -- Índices de tabela `tbvaga`
 --
 ALTER TABLE `tbvaga`
   ADD PRIMARY KEY (`idVaga`),
-  ADD KEY `idCurriculo` (`idCurriculo`),
   ADD KEY `fk_idEmpresa` (`idEmpresa`) USING BTREE;
 
 --
@@ -342,7 +344,6 @@ ALTER TABLE `tbtrabvoluntario`
 -- Restrições para tabelas `tbvaga`
 --
 ALTER TABLE `tbvaga`
-  ADD CONSTRAINT `tbvaga_ibfk_1` FOREIGN KEY (`idCurriculo`) REFERENCES `tbcurriculo` (`idCurriculo`),
   ADD CONSTRAINT `tbvaga_ibfk_2` FOREIGN KEY (`idEmpresa`) REFERENCES `tbempresa` (`idEmpresa`);
 COMMIT;
 
