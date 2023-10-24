@@ -41,21 +41,21 @@ export function RegisterProvider({children}){
             },
             body: JSON.stringify(data)
         }
-        let url = 'http://localhost/server/app/controller/cadastrar.php'
+        let url = 'http://localhost/Trampo/server/controller/cadastrar.php'
         fetch(url, fetchOptions)
         .then(response => response.json())
         .then(response => {
-            console.log(response)
+            
+            if(response == true){
+                nav.navigate('login')
+            }
             
         })
-        .then(error=> console.error(error))
-
-        //nav.navigate('login')
 
     }
 
-    function login(data){
-        let url = 'http://localhost/server/app/controller/obter-usuario.php'
+    function login(data){   
+        let url = 'http://localhost/Trampo/server/controller/obter-usuario.php'
         let options = {
             method: 'POST',
             mode: 'cors',
