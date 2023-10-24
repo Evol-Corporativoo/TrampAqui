@@ -33,15 +33,21 @@
                        WHERE (emailUsuario = ?)';
                 $prepare = $conexao->prepare($select);
                 $prepare->bindValue(1, $usuario->getEmail());
+
                 $data = 'SELECT * from tbUsuario WHERE emailUsuario = ?';
                 $p = $conexao->prepare($data);
+                $p->bindValue(1, $usuario->getEmail());
+
             } else {
                 $select = 'SELECT COUNT(idUsuario) AS contagem FROM tbUsuario
                        WHERE (cpfUsuario = ?)';
                 $prepare = $conexao->prepare($select);
                 $prepare->bindValue(1, $usuario->getCpf());
+
                 $data = 'SELECT * from tbUsuario WHERE cpfUsuario = ?';
                 $p = $conexao->prepare($data);
+                $p->bindValue(1, $usuario->getCpf());
+
             }
 
             $prepare->execute();
@@ -54,6 +60,8 @@
                 $array_p = $p->fetch(PDO::FETCH_ASSOC);
                 if(password_verify($usuario->getSenha(),$array_p['senhaUsuario'])){
                     return [true, $array_p];
+                } else {
+                    return [false];
                 }
             } else {
                 return [false];

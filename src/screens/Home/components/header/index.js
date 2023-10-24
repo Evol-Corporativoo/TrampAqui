@@ -11,7 +11,7 @@ import Notifications from '../../../../routes/TabNav/Notfications';
 
 export default function Header(){
 
-    const {user} = useContext(RegisterContext)
+    const [user,setUser] = useState(useContext(RegisterContext))
 
     useEffect(()=>{
         

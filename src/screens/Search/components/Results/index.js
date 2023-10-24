@@ -1,21 +1,26 @@
-import React from "react";
+import React, {useContext} from "react";
 import { FlatList } from "react-native";
 import style from './style'
 import jobs from "../../../../../data/search";
 import Card from "../Card";
 
+import { RegisterContext } from "../../../../../data/context";
+
 export default function Results(){
+
+    const {search} = useContext(RegisterContext)
+
     return(
 
         <FlatList
             style={style.container}
             showsVerticalScrollIndicator={false}
-            data={jobs}
-            keyExtractor={(item)=>item.id}
+            data={search}
+            // keyExtractor={(item)=>item.idVaga}
             renderItem={({item}) =>(
                 <Card
-                    id={item.id}
-                    nome={item.nome}
+                    id={item.idVaga}
+                    nome={item.nomeVaga}
                     salario={item.salario}
                 />
             )}

@@ -5,7 +5,7 @@ import realFormat from '../../../../../script/client/money-mask'
 import numberFormat from "../../../../../script/client/number-mask";
 
 export default function Card(job){
-    let salario = realFormat(job.salario)
+    let salario = job.salario
     let id = numberFormat(job.id)
     return(
         <View style={style.container}>

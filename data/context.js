@@ -6,8 +6,13 @@ export const RegisterContext = createContext({})
 
 export function RegisterProvider({children}){
 
-    const [user,setUser] = useState();
+    const [user,setUser] = useState({});
+    const [next,setNext] = useState([]);
+    const [search,setSearch] = useState([]);
     const nav = useNavigation();
+    function navLogin(){
+        nav.navigate('home')
+    }
 
     useEffect(()=>{
 
@@ -41,7 +46,7 @@ export function RegisterProvider({children}){
             },
             body: JSON.stringify(data)
         }
-        let url = 'http://localhost/Trampo/server/controller/cadastrar.php'
+        let url = 'http://localhost/Trampo/script/server/controller/cadastrar.php'
         fetch(url, fetchOptions)
         .then(response => response.json())
         .then(response => {
@@ -55,7 +60,7 @@ export function RegisterProvider({children}){
     }
 
     function login(data){   
-        let url = 'http://localhost/Trampo/server/controller/obter-usuario.php'
+        let url = 'http://localhost/Trampo/script/server/controller/login.php'
         let options = {
             method: 'POST',
             mode: 'cors',
@@ -69,23 +74,27 @@ export function RegisterProvider({children}){
         .then(response => response.json())
         .then(response =>{
            if(typeof response == 'object'){
-            let json_user = JSON.stringify(response)
-            async function gravarUsuario(){
-                await AsyncStorage.setItem('usuario',json_user)
-                let log_user = AsyncStorage.getItem('usuario')
-                setUser(log_user)
-                nav.navigate('login')
+            //console.log(response)
+            function gravarUsuario(){
+                setTimeout(()=>{
+                    setUser(JSON.stringify(response[1]))
+                    AsyncStorage.setItem('usuario',JSON.stringify(response[1]))
+                },500)    
+                setTimeout(()=>{
+                    console.log(user)
+                    navLogin()
+                },500)
             }
             gravarUsuario()
            }
         })
         .catch(error=>{
-            console.error('Explodiu o negócio aqui: ',error)
+            console.error('Algo deu errado: ',error)
         })
     }
 
     return(
-        <RegisterContext.Provider value={{signin,login,user,logout}}>
+        <RegisterContext.Provider value={{signin,login,user,logout,next,search,setNext,setSearch}}>
             {children}
         </RegisterContext.Provider>
     )

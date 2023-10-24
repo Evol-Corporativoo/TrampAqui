@@ -13,7 +13,7 @@ export default function Tabs(){
     const Tab = createBottomTabNavigator();
 
     return(
-        <Tab.Navigator initialRouteName="home">
+        <Tab.Navigator initialRouteName="search">
 
             <Tab.Screen
                 name="home"

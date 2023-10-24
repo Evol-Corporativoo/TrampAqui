@@ -8,8 +8,8 @@
 
     $usuario = new Usuario();
     $json = file_get_contents('php://input');
-    //$data = json_decode($json);
-    $data = ['gugu@joia.com',1234];
+    $data = json_decode($json);
+    //$data = ['gujoia10@gmail.com',130123];
     $campo = 0;
 
     if(filter_var($data[0], FILTER_VALIDATE_EMAIL)){
@@ -20,8 +20,7 @@
     }
     $usuario->setSenha($data[1]);
 
-    $novoUsuario = DaoUsuario::buscar($usuario, $campo);
-
-    echo json_encode($novoUsuario);
+    $isLogged = DaoUsuario::logar($usuario, $campo);
+    echo json_encode($isLogged);
 
 ?>
