@@ -22,7 +22,7 @@ import Details from "../../screens/Details";
 export default function Stacks(){
     const Stack = createStackNavigator();
     return(
-        <Stack.Navigator initialRouteName="home">
+        <Stack.Navigator initialRouteName="step01">
             <Stack.Screen
                 name='details'
                 component={Details}
