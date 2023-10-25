@@ -17,10 +17,17 @@ import Login from "../../screens/Register/Login";
 import ReqPass from "../../screens/Register/ReqPass";
 import FormSenha from "../../screens/Register/FormSenha";
 
+import Details from "../../screens/Details";
+
 export default function Stacks(){
     const Stack = createStackNavigator();
     return(
         <Stack.Navigator initialRouteName="home">
+            <Stack.Screen
+                name='details'
+                component={Details}
+                options={options.details}
+            />
             <Stack.Screen
                 name='home'
                 component={Tabs}

@@ -5,6 +5,7 @@ import Search from "../../screens/Search";
 import Explore from "../../screens/Explore";
 import Jobs from "../../screens/Jobs";
 import Profile from "../../screens/Profile";
+import Details from "../../screens/Details";
 
 import options from "./options";
 

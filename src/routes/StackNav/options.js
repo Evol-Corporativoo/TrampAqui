@@ -1,6 +1,16 @@
 import { AntDesign } from '@expo/vector-icons';
 
 const options = {
+    details:{
+        title: 'Voltar',
+        headerTransparent: true,
+        headerTitleStyle:{
+            color: '#000'
+        },
+        headerBackImage: ()=>(
+            <AntDesign name="left" size={'1.5em'} color="#000" />
+        )
+    },
     home:{
         headerShown: false
     },
