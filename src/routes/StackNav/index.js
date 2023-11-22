@@ -18,11 +18,12 @@ import ReqPass from "../../screens/Register/ReqPass";
 import FormSenha from "../../screens/Register/FormSenha";
 
 import Details from "../../screens/Details";
+import Curriculum from "../../screens/Curriculum";
 
 export default function Stacks(){
     const Stack = createStackNavigator();
     return(
-        <Stack.Navigator initialRouteName="step01">
+        <Stack.Navigator initialRouteName="home">
             <Stack.Screen
                 name='details'
                 component={Details}
@@ -92,6 +93,10 @@ export default function Stacks(){
                 name='formsenha'
                 component={FormSenha}
                 options={options.signin}
+            />
+            <Stack.Screen
+                name='curriculo'
+                component={Curriculum}
             />
         </Stack.Navigator>
     )

@@ -28,6 +28,7 @@ export function RegisterProvider({children}){
     
       },[])
 
+
     async function logout(){
 
         AsyncStorage.removeItem('usuario')
@@ -73,7 +74,7 @@ export function RegisterProvider({children}){
         fetch(url, options)
         .then(response => response.json())
         .then(response =>{
-           if(typeof response == 'object'){
+           if(response[0] == true){
             //console.log(response)
             function gravarUsuario(){
                 setTimeout(()=>{

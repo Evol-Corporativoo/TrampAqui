@@ -11,7 +11,8 @@ import Notifications from '../../../../routes/TabNav/Notfications';
 
 export default function Header(){
 
-    const [user,setUser] = useState(useContext(RegisterContext))
+    const {user} = useContext(RegisterContext)
+    console.log(user)
 
     useEffect(()=>{
         
@@ -21,7 +22,7 @@ export default function Header(){
         <View style={style.container}>
             <View style={style.l_col}>
                 <Text style={style.welcome}>Bem-Vindo</Text>
-                <Text style={style.username}>{user.nome}</Text>
+                <Text style={style.username}>{user.nomeUsuario}</Text>
             </View>
             <Notifications/>
         </View>

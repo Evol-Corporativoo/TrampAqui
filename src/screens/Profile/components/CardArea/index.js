@@ -6,7 +6,16 @@ import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 
+import { useNavigation } from '@react-navigation/native';
+
 export default function CardArea(){
+
+    function navCurriculo(){
+        const Nav = useNavigation()
+        Nav.navigate('curriculo')
+    }
+
+
     return(
         <View style={style.container}>
             <View style={[style.row]}>
@@ -17,7 +26,7 @@ export default function CardArea(){
                         <Text style={style.title}>Meus dados</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={navCurriculo}>
                     <View style={style.card}>
                         <Ionicons name="document-attach-outline" size={style.icon.size} color={style.icon.color} />
                         <View style={style.div}/>
