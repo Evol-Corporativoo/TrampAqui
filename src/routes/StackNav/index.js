@@ -23,7 +23,7 @@ import Curriculum from "../../screens/Curriculum";
 export default function Stacks(){
     const Stack = createStackNavigator();
     return(
-        <Stack.Navigator initialRouteName="home">
+        <Stack.Navigator initialRouteName="curriculo">
             <Stack.Screen
                 name='details'
                 component={Details}
@@ -97,6 +97,7 @@ export default function Stacks(){
             <Stack.Screen
                 name='curriculo'
                 component={Curriculum}
+                options={options.details}
             />
         </Stack.Navigator>
     )

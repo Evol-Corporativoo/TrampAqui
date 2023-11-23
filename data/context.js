@@ -9,9 +9,54 @@ export function RegisterProvider({children}){
     const [user,setUser] = useState({});
     const [next,setNext] = useState([]);
     const [search,setSearch] = useState([]);
+    const [signinError, setSigninError] = useState()
     const nav = useNavigation();
     function navLogin(){
         nav.navigate('home')
+    }
+
+    function validarCPF(cpf) {
+        try{
+            cpf = cpf.replace(/[^\d]+/g, ''); // Remove caracteres não numéricos
+        
+            if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
+                return false; // Verifica se o CPF tem 11 dígitos e não é composto por dígitos repetidos
+            }
+        
+            var soma = 0;
+            for (var i = 0; i < 9; i++) {
+                soma += parseInt(cpf.charAt(i)) * (10 - i);
+            }
+        
+            var resto = (soma * 10) % 11;
+        
+            if (resto === 10 || resto === 11) {
+                resto = 0;
+            }
+        
+            if (resto !== parseInt(cpf.charAt(9))) {
+                return false; // Verifica o primeiro dígito verificador
+            }
+        
+            soma = 0;
+            for (var i = 0; i < 10; i++) {
+                soma += parseInt(cpf.charAt(i)) * (11 - i);
+            }
+        
+            resto = (soma * 10) % 11;
+        
+            if (resto === 10 || resto === 11) {
+                resto = 0;
+            }
+        
+            if (resto !== parseInt(cpf.charAt(10))) {
+                return false; // Verifica o segundo dígito verificador
+            }
+        
+            return true; // CPF válido
+        }catch{
+            return false;
+        }    
     }
 
     useEffect(()=>{
@@ -51,9 +96,13 @@ export function RegisterProvider({children}){
         fetch(url, fetchOptions)
         .then(response => response.json())
         .then(response => {
-            
+            console.log('Oi?', response)
             if(response == true){
+                
+                return true
                 nav.navigate('login')
+            } else {
+                return false;
             }
             
         })
@@ -95,7 +144,7 @@ export function RegisterProvider({children}){
     }
 
     return(
-        <RegisterContext.Provider value={{signin,login,user,logout,next,search,setNext,setSearch}}>
+        <RegisterContext.Provider value={{signin,login,user,logout,next,search,setNext,setSearch,validarCPF, signinError}}>
             {children}
         </RegisterContext.Provider>
     )

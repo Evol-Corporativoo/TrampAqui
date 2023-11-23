@@ -6,8 +6,9 @@ import { Entypo } from '@expo/vector-icons';
 import { useState, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
+import { TextInputMask } from 'react-native-masked-text';
+
 import { RegisterContext } from '../../../../../../data/context';
-import mascaraCPF from '../../../../../../script/client/cpf-mask';
 
 export default function Form(){
 
@@ -26,17 +27,65 @@ export default function Form(){
     const loc = [0.8, 1]
     let iconColor
 
-    const [nome,setNome] = useState();
-    const [cpf,setCpf] = useState();
-    const [email, setEmail] = useState();
-    const [senha, setSenha] = useState();
-    const [confirm, setConfirm] = useState();
-    const [telefone, setTelefone] = useState();
-    const [dataNasc, setDataNasc] = useState();
+    const [nome,setNome] = useState('');
+    const [cpf,setCpf] = useState('');
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+    const [confirm, setConfirm] = useState('');
+    const [telefone, setTelefone] = useState('');
+    const [dataNasc, setDataNasc] = useState('');
     const [alert,setAlert] = useState();
     const [isValidCpf,setIsValid] = useState();
 
-    const {signin} = useContext(RegisterContext)
+    const [cpfAlert, setCpfAlert] = useState({
+        borderWidth: 0,
+    })
+    const [nameAlert, setNameAlert] = useState({
+        borderWidth: 0,
+    })
+    const [emailAlert, setEmailAlert] = useState({
+        borderWidth: 0,
+    })
+    const [senhaAlert, setSenhaAlert] = useState({
+        borderWidth: 0,
+    })
+    const [confirmAlert, setConfirmAlert] = useState({
+        borderWidth: 0,
+    })
+    const [telAlert, setTelAlert] = useState({
+        borderWidth: 0,
+    })
+    const [dataAlert, setDataAlert] = useState({
+        borderWidth: 0,
+    })
+    const [cpfText, setCpfText] = useState({
+        display: 'none',
+    })
+    const [nomeText, setNomeText] = useState({
+        display: 'none',
+    })
+    const [emailText, setEmailText] = useState({
+        display: 'none',
+    })
+    const [senhaText, setSenhaText] = useState({
+        display: 'none',
+    })
+    const [confirmText, setConfirmText] = useState({
+        display: 'none',
+    })
+    const [telText, setTelText] = useState({
+        display: 'none',
+    })
+    const [dataText, setDataText] = useState({
+        display: 'none',
+    })
+
+    const [uniqueAlert, setUniqueAlert] = useState({
+        display: 'none'
+    })
+
+
+    const {signin, validarCPF, signinError} = useContext(RegisterContext)
 
     function cadastrar(){
         let object = [
@@ -47,8 +96,154 @@ export default function Form(){
             telefone,
             dataNasc
         ]
-        if(isValidCpf == true && senha == confirm){
-            signin(object)
+        if(validarCPF(cpf)==false){
+            setIsValid(false)
+            setCpfAlert({
+                borderWidth: 3,
+                borderColor: 'red'
+            })
+            setCpfText({
+                display: 'flex',
+                color: 'red',
+                fontSize: '1.1rem'
+            })
+        } else {
+            setIsValid(true)
+            setCpfAlert({
+                borderWidth: 0,
+            })
+            setCpfText({
+                display: 'none'
+            })
+        }
+
+        // let splitError = signinError.split(' ')
+        // let typeError = splitError
+
+        if(nome==''){
+            setNameAlert({
+                borderWidth: 3,
+                borderColor: 'red'
+            })
+            setNomeText({
+                display: 'flex',
+                color: 'red',
+                fontSize: '1.1rem'
+            })
+        } else {
+            setNameAlert({
+                borderWidth: 0
+            })
+            setNomeText({
+                display: 'none'
+            })
+        }
+        if(email==''){
+            setEmailAlert({
+                borderWidth: 3,
+                borderColor: 'red',
+                fontSize: '1.1rem'
+            })
+            setEmailText({
+                display: 'flex',
+                color: 'red'
+            })
+        } else {
+            setEmailAlert({
+                borderWidth: 0
+            })
+            setEmailText({
+                display: 'none'
+            })
+        }
+        if(senha==''){
+            setSenhaAlert({
+                borderWidth: 3,
+                borderColor: 'red',
+                fontSize: '1.1rem'
+            })
+            setSenhaText({
+                display: 'flex',
+                color: 'red'
+            })
+        } else {
+            setSenhaAlert({
+                borderWidth: 0
+            })
+            setSenhaText({
+                display: 'none'
+            })
+        }
+        if(confirm!=senha){
+            setConfirmAlert({
+                borderWidth: 3,
+                borderColor: 'red',
+                fontSize: '1.1rem'
+            })
+            setConfirmText({
+                display: 'flex',
+                color: 'red'
+            })
+        } else {
+            setConfirmAlert({
+                borderWidth: 0
+            })
+            setConfirmText({
+                display: 'none'
+            })
+        }
+        if(telefone==''){
+            setTelAlert({
+                borderWidth: 3,
+                borderColor: 'red',
+                fontSize: '1.1rem'
+            })
+            setTelText({
+                display: 'flex',
+                color: 'red'
+            })
+        } else {
+            setTelAlert({
+                borderWidth: 0
+            })
+            setTelText({
+                display: 'none'
+            })
+        }
+        if(dataNasc==''){
+            setDataAlert({
+                borderWidth: 3,
+                borderColor: 'red',
+                fontSize: '1.1rem'
+            })
+            setDataText({
+                display: 'flex',
+                color: 'red'
+            })
+        } else {
+            setDataAlert({
+                borderWidth: 0
+            })
+            setDataText({
+                display: 'none'
+            })
+        }
+
+
+        if(isValidCpf==true && senha == confirm && senha != '' && nome != '' && email!='' && telefone!='' && dataNasc != ''){
+            let ret = signin(object)
+            if(ret==false){
+                setUniqueAlert({
+                    display: 'flex',
+                    color: 'red',
+                    fontSize: '1.1rem'
+                })
+            } else {
+                setUniqueAlert({
+                    display: 'flex'
+                })
+            }
+            
         }
         
     }
@@ -67,11 +262,12 @@ export default function Form(){
                 locations={loc}
                 style={style.input_bg}
             >
-                <TextInput style={style.input}
+                <TextInput style={[style.input, nameAlert]}
                     placeholder='Nome completo'
                     onChangeText={(text)=>{setNome(text)}}
                 />
             </LinearGradient>
+            <Text style={nomeText}>Preencha o campo.</Text>
             <Text style={style.label}>CPF</Text>
             <LinearGradient
                 colors={grad}
@@ -80,16 +276,16 @@ export default function Form(){
                 locations={loc}
                 style={style.input_bg}
             >
-                <TextInput style={style.input}
-                    placeholder='Cpf'
-                    onChangeText={(text)=>{
-                        setCpf(text)
-                        setIsValid(mascaraCPF(text))
-                    }}
-                    //value={cpf}
-                    keyboardType="numeric"
+                <TextInputMask
+                    style={[style.input,cpfAlert]}
+                    type={'cpf'}
+                    placeholder="CPF"
+                    value={cpf}
+                    onChangeText={(text) => setCpf(text)}
                 />
             </LinearGradient>
+            <Text style={cpfText}>CPF inválido ou vazio.</Text>
+            <Text style={uniqueAlert}>CPF ou Email já cadastrados.</Text>
             <Text style={style.label}>E-Mail</Text>
             <LinearGradient
                 colors={grad}
@@ -98,10 +294,12 @@ export default function Form(){
                 locations={loc}
                 style={style.input_bg}
             >
-                <TextInput style={style.input} placeholder='Endereço de email'
+                <TextInput style={[style.input, emailAlert]} placeholder='Endereço de email'
                     onChangeText={(text)=>{setEmail(text)}}
                 />
             </LinearGradient>
+            <Text style={emailText}>Preencha este campo.</Text>
+            <Text style={uniqueAlert}>CPF ou Email já cadastrados.</Text>
             <Text style={style.label}>Senha</Text>
             <LinearGradient
                 colors={grad}
@@ -110,11 +308,12 @@ export default function Form(){
                 locations={loc}
                 style={style.input_bg}
             >
-                <TextInput style={style.input} placeholder='Crie sua senha'
+                <TextInput style={[style.input, senhaAlert]} placeholder='Crie sua senha'
                     onChangeText={(text)=>{setSenha(text)}}
                     secureTextEntry={true}
                 />
             </LinearGradient>
+            <Text style={senhaText}>Preencha o campo.</Text>
             <Text style={style.label}>Confirmar senha</Text>
             <LinearGradient
                 colors={grad}
@@ -123,11 +322,12 @@ export default function Form(){
                 locations={loc}
                 style={style.input_bg}
             >
-                <TextInput style={style.input} placeholder='Repita a senha criada'
+                <TextInput style={[style.input, confirmAlert]} placeholder='Repita a senha criada'
                     onChangeText={(text)=>{setConfirm(text)}}
                     secureTextEntry={true}
                 />
             </LinearGradient>
+            <Text style={confirmText}>A senha deve ser repetida</Text>
             <Text style={style.label}>Telefone</Text>
             <LinearGradient
                 colors={grad}
@@ -136,12 +336,20 @@ export default function Form(){
                 locations={loc}
                 style={style.input_bg}
             >
-                <TextInput style={style.input} placeholder='Número de telefone'
-                    onChangeText={(text)=>{
-                        setTelefone(text)
+                <TextInputMask
+                    style={[style.input, telAlert]}
+                    type={'cel-phone'}
+                    options={{
+                    maskType: 'BRL',
+                    withDDD: true,
+                    dddMask: '(99) ',
                     }}
+                    placeholder="Número de telefone"
+                    value={telefone}
+                    onChangeText={(text) => setTelefone(text)}
                 />
             </LinearGradient>
+            <Text style={telText}>Preencha o campo.</Text>
             <Text style={style.label}>Data de Nascimento</Text>
             <LinearGradient
                 colors={grad}
@@ -150,10 +358,18 @@ export default function Form(){
                 locations={loc}
                 style={style.input_bg}
             >
-                <TextInput style={style.input} placeholder='DD/MM/AAAA'
-                    onChangeText={(text)=>setDataNasc(text)}
+                <TextInputMask
+                    style={[style.input,dataAlert]}
+                    type={'datetime'}
+                    options={{
+                    format: 'DD/MM/YYYY',
+                    }}
+                    placeholder="DD/MM/AAAA"
+                    value={dataNasc}
+                    onChangeText={(text) => setDataNasc(text)}
                 />
             </LinearGradient>
+            <Text style={dataText}>Preencha o campo.</Text>
             <View style={style.check_area}>
                 <BouncyCheckbox
                     size={25}

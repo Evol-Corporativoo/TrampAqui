@@ -18,9 +18,12 @@
             $prepare->bindValue(5, $usuario->getDataNasc());
             $prepare->bindValue(6, password_hash($usuario->getSenha(),PASSWORD_DEFAULT));
 
-            $prepare->execute();
-
-            return true;
+            try{
+                $prepare->execute();
+                return true;
+            } catch(Exception $e){
+                return $e->getMessage();
+            }
 
         }
 

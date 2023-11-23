@@ -10,8 +10,9 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function CardArea(){
 
+
+    const Nav = useNavigation()
     function navCurriculo(){
-        const Nav = useNavigation()
         Nav.navigate('curriculo')
     }
 
