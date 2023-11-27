@@ -5,7 +5,8 @@ const style = StyleSheet.create({
     container:{
         flex: 1,
         backgroundColor: '#D4D4D4',
-        alignItems: 'center'
+        alignItems: 'center',
+        overflow: 'scroll'
     },
     header_space:{
         //backgroundColor: 'red',

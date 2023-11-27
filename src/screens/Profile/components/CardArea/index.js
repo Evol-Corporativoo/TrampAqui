@@ -5,15 +5,18 @@ import { Octicons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import { useRoute } from '@react-navigation/native';
 
 import { useNavigation } from '@react-navigation/native';
 
 export default function CardArea(){
 
+    const Route = useRoute()
+    const data = JSON.parse(Route.params.data)
 
     const Nav = useNavigation()
     function navCurriculo(){
-        Nav.navigate('curriculo')
+        Nav.navigate('curriculo',{data: data})
     }
 
 

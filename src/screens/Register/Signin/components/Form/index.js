@@ -35,7 +35,7 @@ export default function Form(){
     const [telefone, setTelefone] = useState('');
     const [dataNasc, setDataNasc] = useState('');
     const [alert,setAlert] = useState();
-    const [isValidCpf,setIsValid] = useState();
+    const [isValidCpf,setIsValid] = useState(false);
 
     const [cpfAlert, setCpfAlert] = useState({
         borderWidth: 0,
@@ -231,19 +231,7 @@ export default function Form(){
 
 
         if(isValidCpf==true && senha == confirm && senha != '' && nome != '' && email!='' && telefone!='' && dataNasc != ''){
-            let ret = signin(object)
-            if(ret==false){
-                setUniqueAlert({
-                    display: 'flex',
-                    color: 'red',
-                    fontSize: '1.1rem'
-                })
-            } else {
-                setUniqueAlert({
-                    display: 'flex'
-                })
-            }
-            
+            signin(object)
         }
         
     }
@@ -264,6 +252,7 @@ export default function Form(){
             >
                 <TextInput style={[style.input, nameAlert]}
                     placeholder='Nome completo'
+                    value={nome}
                     onChangeText={(text)=>{setNome(text)}}
                 />
             </LinearGradient>
@@ -296,6 +285,7 @@ export default function Form(){
             >
                 <TextInput style={[style.input, emailAlert]} placeholder='Endereço de email'
                     onChangeText={(text)=>{setEmail(text)}}
+                    value={email}
                 />
             </LinearGradient>
             <Text style={emailText}>Preencha este campo.</Text>
@@ -310,6 +300,7 @@ export default function Form(){
             >
                 <TextInput style={[style.input, senhaAlert]} placeholder='Crie sua senha'
                     onChangeText={(text)=>{setSenha(text)}}
+                    value={senha}
                     secureTextEntry={true}
                 />
             </LinearGradient>
@@ -325,6 +316,7 @@ export default function Form(){
                 <TextInput style={[style.input, confirmAlert]} placeholder='Repita a senha criada'
                     onChangeText={(text)=>{setConfirm(text)}}
                     secureTextEntry={true}
+                    value={confirm}
                 />
             </LinearGradient>
             <Text style={confirmText}>A senha deve ser repetida</Text>

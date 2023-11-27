@@ -6,13 +6,21 @@ export const RegisterContext = createContext({})
 
 export function RegisterProvider({children}){
 
-    const [user,setUser] = useState({});
+    const [user,setUser] = useState();
     const [next,setNext] = useState([]);
     const [search,setSearch] = useState([]);
     const [signinError, setSigninError] = useState()
     const nav = useNavigation();
-    function navLogin(){
-        nav.navigate('home')
+    function toLogin(){
+        nav.navigate('login')
+    }
+    function navLogin(data){
+        nav.navigate('start',{user: JSON.stringify(data)})
+    }
+
+    function numberCpf(cpf){
+        let new_cpf = cpf.replace(/[^\d]+/g, '');
+        return new_cpf;
     }
 
     function validarCPF(cpf) {
@@ -59,19 +67,7 @@ export function RegisterProvider({children}){
         }    
     }
 
-    useEffect(()=>{
-
-        async function buscarUsuario(){
-          let json_usuario = await AsyncStorage.getItem('usuario')
-          if(json_usuario != null){
-            let n_usuario = JSON.parse(json_usuario)
-            setUser(n_usuario)
-          }
-        }
     
-        buscarUsuario()
-    
-      },[])
 
 
     async function logout(){
@@ -79,6 +75,44 @@ export function RegisterProvider({children}){
         AsyncStorage.removeItem('usuario')
         setUser({})
         nav.navigate('login')
+
+    }
+
+    function criarCurriculo(dados){
+        let options = {
+            method: 'POST',
+            mode: 'cors',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dados)
+        }
+        let url = 'http://localhost/Trampo/script/server/controller/criarCurriculo.php'
+
+        fetch(url, options)
+        .then(response=>response.json())
+        .then(response=>{
+            console.log(response)
+        })
+
+    }
+
+    function buscarCurriculo(id){
+        let options = {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(id)
+        }
+        let url = 'http://localhost/Trampo/script/server/controller/buscarCurriculo.php'
+
+        fetch(url,options)
+        .then(response=> response.json())
+        .then(response=>{
+            console.log(response)
+        })
 
     }
 
@@ -98,15 +132,20 @@ export function RegisterProvider({children}){
         .then(response => {
             console.log('Oi?', response)
             if(response == true){
-                
-                return true
-                nav.navigate('login')
+                toLogin()
             } else {
                 return false;
             }
             
         })
 
+    }
+
+    async function getUser(){
+        let user = await AsyncStorage.getItem('usuario')
+        .then(()=>{
+            return user
+        });
     }
 
     function login(data){   
@@ -122,20 +161,10 @@ export function RegisterProvider({children}){
 
         fetch(url, options)
         .then(response => response.json())
-        .then(response =>{
+        .then(async response =>{
            if(response[0] == true){
-            //console.log(response)
-            function gravarUsuario(){
-                setTimeout(()=>{
-                    setUser(JSON.stringify(response[1]))
-                    AsyncStorage.setItem('usuario',JSON.stringify(response[1]))
-                },500)    
-                setTimeout(()=>{
-                    console.log(user)
-                    navLogin()
-                },500)
-            }
-            gravarUsuario()
+            navLogin(response[1])
+            
            }
         })
         .catch(error=>{
@@ -144,7 +173,7 @@ export function RegisterProvider({children}){
     }
 
     return(
-        <RegisterContext.Provider value={{signin,login,user,logout,next,search,setNext,setSearch,validarCPF, signinError}}>
+        <RegisterContext.Provider value={{getUser,numberCpf,signin,login,user,setUser,logout,next,search,setNext,setSearch,validarCPF, signinError, criarCurriculo}}>
             {children}
         </RegisterContext.Provider>
     )

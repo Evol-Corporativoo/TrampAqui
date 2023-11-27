@@ -11,8 +11,11 @@
     
     $usuario = new Usuario();
     $usuario->setNome($data[0]);
-    $usuario->setCpf($data[1]);
-    $usuario->setDataNasc($data[5]);
+    $numerosCpf = preg_replace('/[^0-9]/', '',$data[1]);
+    $usuario->setCpf($numerosCpf);
+    $arrayData = explode('/',$data[5]);
+    $dataNasc = $arrayData[2].'-'.$arrayData[1].'-'.$arrayData[0];
+    $usuario->setDataNasc($dataNasc);
     $usuario->setEmail($data[2]);
     $usuario->setSenha($data[3]);
     $usuario->setTelefone($data[4]);

@@ -31,6 +31,11 @@
 
             $conexao = Conexao::conectar();
 
+            $cpfNumerico = preg_replace('/[^0-9]/', '', $usuario->getCpf());
+
+            // Adiciona pontos e traço ao CPF formatado
+            $cpfFormatado = substr($cpfNumerico, 0, 3) . '.' . substr($cpfNumerico, 3, 3) . '.' . substr($cpfNumerico, 6, 3) . '-' . substr($cpfNumerico, 9, 2);
+            $usuario->setCpf($cpfFormatado);
             if($campo == 0){
                 $select = 'SELECT COUNT(idUsuario) AS contagem FROM tbUsuario
                        WHERE (emailUsuario = ?)';
@@ -100,6 +105,34 @@
             $novo->setSenha($lista['senhaUsuario']);
 
             return $novo->emArray();
+
+        }
+
+        public function buscarCurriculo(Int $id){
+
+            $conexao = Conexao::conectar();
+            $select_usuario = 'SELECT nomeUsuario, cpfUsuario, emailUsuario, telefoneUsuario, dataNascUsuario FROM tbusuario WHERE idUsuario = ?';
+            $select_curriculo = 'SELECT * FROM tbcurriculo WHERE idUsuario = ?';
+            $p1 = $conexao->prepare($select_usuario);
+            $p2 = $conexao->prepare($select_curriculo);
+            $p1->bindValue(1, $id);
+            $p2->bindValue(1, $id);
+
+        }
+
+        public function verificarCurriculo($id){
+
+            $conexao = Conexao::conectar();
+            $select = 'SELECT * FROM tbcurriculo WHERE idUsuario = ?';
+            $prepare = $conexao->prepare($select);
+            $prepare->bindValue(1, $id);
+
+            try{
+                $prepare->execute();
+                return true;
+            } catch(Exception $e){
+                return false;
+            }
 
         }
 
