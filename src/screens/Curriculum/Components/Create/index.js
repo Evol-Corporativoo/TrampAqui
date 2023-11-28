@@ -13,7 +13,7 @@ export default function Create({display}){
     const Route = useRoute()
     const data = Route.params.data
 
-    const {user, criarCurriculo} = useContext(RegisterContext)
+    const {user, criarCurriculo, curriculo, setCurriculo} = useContext(RegisterContext)
 
     const [objetivo, setObjetivo] = useState('')
     const [habilidades, setHabilidades] = useState('')
@@ -83,7 +83,7 @@ export default function Create({display}){
 
     function render(){
 
-        Nav.navigate('curriculo',{data: data, created: true})
+        Nav.navigate('curriculo',{data: data})
 
     }
 

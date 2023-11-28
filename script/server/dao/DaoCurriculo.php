@@ -1,11 +1,35 @@
 <?php
 
+use PSpell\Config;
+
     require_once(__DIR__.'/../model/Curriculo.php');
     require_once(__DIR__.'/../model/Conexao.php');
 
     class DaoCurriculo{
 
-        static function cadastrar(Curriculo $curriculo){
+        public static function check($id){
+
+            $conexao = Conexao::conectar();
+            $select = 'SELECT COUNT(idCurriculo) AS cont FROM tbcurriculo WHERE idUsuario = ?';
+            $prepare = $conexao->prepare($select);
+            $prepare->bindValue(1, $id);
+            try{
+                $prepare->execute();
+                $fetch = $prepare->fetch(PDO::FETCH_ASSOC);
+
+                if($fetch['cont']==1){
+                    return true;
+                } else {
+                    return false;
+                }
+
+            }catch(Exception $e){
+                return false;
+            }
+
+        }
+
+        public static function cadastrar(Curriculo $curriculo){
 
             $conexao = Conexao::conectar();
             $insert = 'INSERT INTO tbcurriculo(idUsuario, objetivoCurriculo, genero, estadoCivilCurriculo, habilidadesCurriculo)
@@ -29,6 +53,45 @@
             } catch (Exception $e){
                 // return $e;
             }
+
+        }
+
+        public static function buscarCurriculo($id){
+
+            $conexao = Conexao::conectar();
+
+            $s_curriculo = 'SELECT * FROM tbcurriculo WHERE idUsuario = ?';
+            $p1 = $conexao->prepare($s_curriculo);
+            $p1->bindValue(1, $id);
+            try{
+                $p1->execute();
+                $m_curriculo = $p1->fetch(PDO::FETCH_ASSOC);
+            } catch(Exception $e){
+                echo $e;
+            }
+
+            $s_formacoes = 'SELECT * FROM tbformacao WHERE idCurriculo = ?';
+            $s_idiomas = 'SELECT * FROM tbidioma WHERE idCurriculo = ?';
+            $s_experiencias = 'SELECT * FROM tbexperiencia WHERE idCurriculo = ?';
+            $p2 = $conexao->prepare($s_formacoes);
+            $p2->bindValue(1, $m_curriculo['idCurriculo']);
+            $p3 = $conexao->prepare($s_idiomas);
+            $p3->bindValue(1, $m_curriculo['idCurriculo']);
+            $p4 = $conexao->prepare($s_experiencias);
+            $p4->bindValue(1, $m_curriculo['idCurriculo']);
+
+            try{
+                $p2->execute();
+                $p3->execute();
+                $p4->execute();
+                $formacoes = $p2->fetchAll(PDO::FETCH_ASSOC);
+                $idiomas = $p3->fetchAll(PDO::FETCH_ASSOC);
+                $experiencias = $p4->fetchAll(PDO::FETCH_ASSOC);
+            } catch(Exception $e){
+                return $e;
+            }
+
+            return [$m_curriculo,$formacoes, $idiomas, $experiencias];
 
         }
 

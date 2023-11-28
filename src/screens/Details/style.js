@@ -2,6 +2,10 @@ import React from "react";
 import { StyleSheet } from "react-native";
 
 const style = StyleSheet.create({
+    scroll:{
+        overflow: 'scroll',
+        maxHeight: '85vh',
+    },
     container:{
         overflow: 'scroll',
         width: '95vw',
@@ -9,7 +13,7 @@ const style = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 20,
         padding: '3vh',
-        paddingTop: '5vh',
+        paddingTop: '3vh',
         marginTop: '10vh',
         marginLeft: '2.5vw',
         shadowColor: "#000",
@@ -19,7 +23,6 @@ const style = StyleSheet.create({
         },
         shadowOpacity: 0.2,
         shadowRadius: 10,
-        paddingTop: '1vh'
     },
     titulo_area:{
         maxWidth: '65%',
@@ -40,7 +43,7 @@ const style = StyleSheet.create({
         width: '85%',
         height: '5vh',
         marginLeft: '7vw',
-        marginTop: '10vh'
+        marginTop: '2vh'
     },
     r_col:{
         flexDirection: 'row',

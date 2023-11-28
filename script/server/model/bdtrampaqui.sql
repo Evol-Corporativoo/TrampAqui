@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25/10/2023 às 01:02
+-- Tempo de geração: 28/11/2023 às 01:22
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -24,17 +24,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `tbcandidatura`
+--
+
+CREATE TABLE `tbcandidatura` (
+  `idCandidatura` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `idVaga` int(11) NOT NULL,
+  `status` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `tbcurriculo`
 --
 
 CREATE TABLE `tbcurriculo` (
   `idCurriculo` int(11) NOT NULL,
   `objetivoCurriculo` varchar(500) NOT NULL,
-  `telefone` varchar(30) NOT NULL,
-  `estadoCivil` varchar(40) NOT NULL,
-  `cpfUsuario` varchar(15) NOT NULL,
+  `genero` varchar(20) NOT NULL,
+  `estadoCivilCurriculo` varchar(40) NOT NULL,
+  `habilidadesCurriculo` varchar(1000) NOT NULL,
   `idUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `tbcurriculo`
+--
+
+INSERT INTO `tbcurriculo` (`idCurriculo`, `objetivoCurriculo`, `genero`, `estadoCivilCurriculo`, `habilidadesCurriculo`, `idUsuario`) VALUES
+(111, 'SAAAAAA', 'masculino', 'solteiro', 'aaaaaaaaaaaaaaaaaaa', 209);
 
 -- --------------------------------------------------------
 
@@ -47,6 +67,11 @@ CREATE TABLE `tbempresa` (
   `nomeEmpresa` varchar(200) NOT NULL,
   `cnpjEmpresa` varchar(30) NOT NULL,
   `cepEmpresa` varchar(10) NOT NULL,
+  `cidadeEmpresa` varchar(200) NOT NULL,
+  `ufEmpresa` varchar(5) NOT NULL,
+  `bairroEmpresa` varchar(200) NOT NULL,
+  `logradouroEmpresa` varchar(200) NOT NULL,
+  `numeroEmpresa` int(11) NOT NULL,
   `dataCriacaoEmpresa` date NOT NULL,
   `emailEmpresa` varchar(140) NOT NULL,
   `telefoneEmpresa` varchar(30) NOT NULL,
@@ -54,6 +79,13 @@ CREATE TABLE `tbempresa` (
   `complementoEmpresa` varchar(200) NOT NULL,
   `idUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `tbempresa`
+--
+
+INSERT INTO `tbempresa` (`idEmpresa`, `nomeEmpresa`, `cnpjEmpresa`, `cepEmpresa`, `cidadeEmpresa`, `ufEmpresa`, `bairroEmpresa`, `logradouroEmpresa`, `numeroEmpresa`, `dataCriacaoEmpresa`, `emailEmpresa`, `telefoneEmpresa`, `descEmpresa`, `complementoEmpresa`, `idUsuario`) VALUES
+(40, 'Teste de Insert', '35.480.535/0001-91', '08490-560', 'São Paulo', 'SP', 'Santa Etelvina', 'Rua Santa Adelaide', 11, '0000-00-00', '', '(12) 4567-8901', 'Técnologia', '', 210);
 
 -- --------------------------------------------------------
 
@@ -64,15 +96,20 @@ CREATE TABLE `tbempresa` (
 CREATE TABLE `tbexperiencia` (
   `idExperiencia` int(11) NOT NULL,
   `tituloExperiencia` varchar(100) NOT NULL,
-  `tipoEmpresa` varchar(50) NOT NULL,
   `nomeEmpresa` varchar(80) NOT NULL,
   `dataInicioExperiencia` date NOT NULL,
   `dataTerminoExperiencia` date NOT NULL,
   `localidadeExperiencia` varchar(200) NOT NULL,
-  `tipoEmprego` varchar(100) NOT NULL,
-  `descExperiencia` varchar(500) NOT NULL,
   `idCurriculo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `tbexperiencia`
+--
+
+INSERT INTO `tbexperiencia` (`idExperiencia`, `tituloExperiencia`, `nomeEmpresa`, `dataInicioExperiencia`, `dataTerminoExperiencia`, `localidadeExperiencia`, `idCurriculo`) VALUES
+(11, 'Est', 'aaa', '2022-02-01', '2022-07-01', 'aaaaaaaaaaaaa', 111),
+(12, 'Gestooooo', 'oooooo', '2022-05-01', '2023-03-01', 'oooooo', 111);
 
 -- --------------------------------------------------------
 
@@ -82,12 +119,21 @@ CREATE TABLE `tbexperiencia` (
 
 CREATE TABLE `tbformacao` (
   `idFormacao` int(11) NOT NULL,
-  `areaFormacao` varchar(50) NOT NULL,
+  `instituicaoFormacao` varchar(100) NOT NULL,
   `dataInicioFormacao` date NOT NULL,
   `dataTerminoFormacao` date NOT NULL,
   `localFormacao` varchar(80) NOT NULL,
+  `diplomaFormacao` varchar(100) NOT NULL,
+  `situacaoFormacao` varchar(30) NOT NULL,
   `idCurriculo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `tbformacao`
+--
+
+INSERT INTO `tbformacao` (`idFormacao`, `instituicaoFormacao`, `dataInicioFormacao`, `dataTerminoFormacao`, `localFormacao`, `diplomaFormacao`, `situacaoFormacao`, `idCurriculo`) VALUES
+(95, 'CT', '2021-02-01', '2023-12-01', 'SP', 'CSAA', 'Trancado', 111);
 
 -- --------------------------------------------------------
 
@@ -101,6 +147,13 @@ CREATE TABLE `tbidioma` (
   `nivelIdioma` varchar(20) NOT NULL,
   `idCurriculo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `tbidioma`
+--
+
+INSERT INTO `tbidioma` (`idIdioma`, `idioma`, `nivelIdioma`, `idCurriculo`) VALUES
+(49, 'Inglês', 'Intermediário', 111);
 
 -- --------------------------------------------------------
 
@@ -151,6 +204,14 @@ CREATE TABLE `tbusuario` (
   `senhaUsuario` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `tbusuario`
+--
+
+INSERT INTO `tbusuario` (`idUsuario`, `nomeUsuario`, `cpfUsuario`, `emailUsuario`, `telefoneUsuario`, `dataNascUsuario`, `tipoUsuario`, `senhaUsuario`) VALUES
+(209, 'Gustavo de Souza Costa Joia', '48059265890', 'joia@oficial.com', '(11) 94813-2408', '2005-05-30', b'0', '$2y$10$02QIvww9620hC.xlxyWZkep/RJntkJy8IQUL04m3Myf7spOj/kgaa'),
+(210, 'Adm supremo', '230.252.138-25', 'adm@oficial.com', '', '0000-00-00', b'1', '$2y$10$1XJTV/Ah8sqK52HDP927jODEXBcjoryP7scasPuApJNA03HYSQqOW');
+
 -- --------------------------------------------------------
 
 --
@@ -160,23 +221,40 @@ CREATE TABLE `tbusuario` (
 CREATE TABLE `tbvaga` (
   `idVaga` int(11) NOT NULL,
   `nomeVaga` varchar(100) NOT NULL,
-  `descVaga` varchar(300) NOT NULL,
+  `descVaga` varchar(2000) NOT NULL,
   `cargoVaga` varchar(30) NOT NULL,
-  `cargaHorariaVaga` time NOT NULL,
+  `cargaHorariaVaga` int(11) NOT NULL,
   `salarioVaga` double NOT NULL,
-  `sobreVaga` varchar(500) NOT NULL,
+  `tipoVaga` varchar(30) NOT NULL,
+  `modeloVaga` varchar(30) NOT NULL,
+  `formacaoVaga` varchar(30) NOT NULL,
   `idEmpresa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `tbvaga`
+--
+
+INSERT INTO `tbvaga` (`idVaga`, `nomeVaga`, `descVaga`, `cargoVaga`, `cargaHorariaVaga`, `salarioVaga`, `tipoVaga`, `modeloVaga`, `formacaoVaga`, `idEmpresa`) VALUES
+(24, 'Operador de computador', 'aaaaaaaaaaaaaaaaaaaaaaaaa', 'Assistência', 40, 3790, 'estagio', 'presencial', 'medio-completo', 40),
+(25, 'Operador de computador', 'aaaaaaaaaaaaaaaaaaaaaaaaa', 'Assistência', 40, 3790.99, 'estagio', 'presencial', 'medio-completo', 40);
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
+-- Índices de tabela `tbcandidatura`
+--
+ALTER TABLE `tbcandidatura`
+  ADD PRIMARY KEY (`idCandidatura`);
+
+--
 -- Índices de tabela `tbcurriculo`
 --
 ALTER TABLE `tbcurriculo`
   ADD PRIMARY KEY (`idCurriculo`),
+  ADD UNIQUE KEY `unique_idUsuario` (`idUsuario`),
   ADD KEY `fk_idUsuario` (`idUsuario`);
 
 --
@@ -227,7 +305,8 @@ ALTER TABLE `tbtrabvoluntario`
 --
 ALTER TABLE `tbusuario`
   ADD PRIMARY KEY (`idUsuario`),
-  ADD UNIQUE KEY `unique_email` (`emailUsuario`);
+  ADD UNIQUE KEY `unique_email` (`emailUsuario`),
+  ADD UNIQUE KEY `unique_cpf` (`cpfUsuario`);
 
 --
 -- Índices de tabela `tbvaga`
@@ -241,34 +320,40 @@ ALTER TABLE `tbvaga`
 --
 
 --
+-- AUTO_INCREMENT de tabela `tbcandidatura`
+--
+ALTER TABLE `tbcandidatura`
+  MODIFY `idCandidatura` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `tbcurriculo`
 --
 ALTER TABLE `tbcurriculo`
-  MODIFY `idCurriculo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCurriculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT de tabela `tbempresa`
 --
 ALTER TABLE `tbempresa`
-  MODIFY `idEmpresa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idEmpresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de tabela `tbexperiencia`
 --
 ALTER TABLE `tbexperiencia`
-  MODIFY `idExperiencia` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idExperiencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `tbformacao`
 --
 ALTER TABLE `tbformacao`
-  MODIFY `idFormacao` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idFormacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT de tabela `tbidioma`
 --
 ALTER TABLE `tbidioma`
-  MODIFY `idIdioma` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idIdioma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT de tabela `tbintercambio`
@@ -286,13 +371,13 @@ ALTER TABLE `tbtrabvoluntario`
 -- AUTO_INCREMENT de tabela `tbusuario`
 --
 ALTER TABLE `tbusuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=211;
 
 --
 -- AUTO_INCREMENT de tabela `tbvaga`
 --
 ALTER TABLE `tbvaga`
-  MODIFY `idVaga` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idVaga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Restrições para tabelas despejadas

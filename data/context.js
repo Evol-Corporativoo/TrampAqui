@@ -6,6 +6,8 @@ export const RegisterContext = createContext({})
 
 export function RegisterProvider({children}){
 
+    const [curriculo, setCurriculo] = useState({})
+
     const [user,setUser] = useState();
     const [next,setNext] = useState([]);
     const [search,setSearch] = useState([]);
@@ -173,7 +175,7 @@ export function RegisterProvider({children}){
     }
 
     return(
-        <RegisterContext.Provider value={{getUser,numberCpf,signin,login,user,setUser,logout,next,search,setNext,setSearch,validarCPF, signinError, criarCurriculo}}>
+        <RegisterContext.Provider value={{curriculo,setCurriculo,getUser,numberCpf,signin,login,user,setUser,logout,next,search,setNext,setSearch,validarCPF, signinError, criarCurriculo}}>
             {children}
         </RegisterContext.Provider>
     )

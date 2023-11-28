@@ -3,12 +3,17 @@ import { View, Text, TouchableOpacity } from "react-native";
 import style from "./style";
 import realFormat from '../../../../../script/client/money-mask'
 import numberFormat from "../../../../../script/client/number-mask";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
-export default function Card(job){
+export default function Card({job}){
+    
     const Navigation = useNavigation()
     let salario = realFormat(job.salarioVaga)
     let id = numberFormat(job.idVaga)
+    const Route = useRoute()
+    const data = JSON.parse(Route.params.data)
+
+
     return(
         <View style={style.container}>
             <View style={style.l_col}>
@@ -20,7 +25,7 @@ export default function Card(job){
                     <Text style={style.txt_small}>Salário</Text>
                     <Text style={style.txt_titulo}>{salario}</Text>
                 </View>
-                <TouchableOpacity onPress={()=>{Navigation.navigate('details',{idVaga:job.idVaga,nomeVaga:job.nomeVaga,descVaga:job.descVaga,cargoVaga:job.cargoVaga,cargaHora: job.cargaHorariaVaga,salarioVaga:job.salarioVaga,sobreVaga:job.sobreVaga})}} style={style.btn}>
+                <TouchableOpacity onPress={()=>{Navigation.navigate('details',{data: JSON.stringify(job), user: data})}} style={style.btn}>
                     <Text>Visualizar vaga</Text>
                 </TouchableOpacity>
             </View>

@@ -19,13 +19,7 @@ export default function Results(){
             // keyExtractor={(item)=>item.idVaga}
             renderItem={({item}) =>(
                 <Card
-                    idVaga={item.idVaga}
-                    nomeVaga={item.nomeVaga}
-                    salarioVaga={item.salarioVaga}
-                    descVaga={item.descVaga}
-                    cargoVaga={item.cargoVaga}
-                    cargaHorariaVaga={item.cargaHorariaVaga}
-                    sobreVaga={item.sobreVaga}
+                    job={item}
                 />
             )}
         />

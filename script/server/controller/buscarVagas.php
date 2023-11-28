@@ -7,6 +7,7 @@
 
     $json = file_get_contents('php://input');
     $query = json_decode($json);
+    //$query = 'o';
     if($query !== ' ' && $query != ''){
         $resultados = DaoVaga::buscar($query);
 

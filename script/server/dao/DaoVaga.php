@@ -39,12 +39,13 @@ class DaoVaga {
 
     public static function buscar($query){
         $conexao = Conexao::conectar();
-        $select = "SELECT * FROM tbVaga WHERE nomeVaga LIKE ? OR descVaga LIKE ? OR sobreVaga LIKE ? OR cargoVaga LIKE ?";
+        $select = "SELECT idVaga, nomeVaga, descVaga, cargoVaga, cargaHorariaVaga, salarioVaga, tipoVaga, modeloVaga, formacaoVaga, tbvaga.idEmpresa, logradouroEmpresa, numeroEmpresa, complementoEmpresa, bairroEmpresa, cidadeEmpresa, ufEmpresa, cepEmpresa, nomeEmpresa FROM tbVaga
+        INNER JOIN tbempresa ON tbvaga.idEmpresa = tbempresa.idEmpresa
+        WHERE nomeVaga LIKE ? OR descVaga LIKE ? OR cargoVaga LIKE ?";
         $prepare = $conexao->prepare($select);
         $prepare->bindValue(1, '%'.$query.'%');
         $prepare->bindValue(2, '%'.$query.'%');
         $prepare->bindValue(3, '%'.$query.'%');
-        $prepare->bindValue(4, '%'.$query.'%');
         $prepare->execute();
         $lista = $prepare->fetchAll(PDO::FETCH_ASSOC);
         
