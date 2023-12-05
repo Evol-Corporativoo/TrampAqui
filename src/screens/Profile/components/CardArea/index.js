@@ -19,6 +19,9 @@ export default function CardArea(){
         Nav.navigate('curriculo',{data: data})
     }
 
+    function navCandidaturas(){
+        Nav.navigate('candidaturas',{data: data})
+    }
 
     return(
         <View style={style.container}>
@@ -46,7 +49,7 @@ export default function CardArea(){
                         <Text style={style.title}>Vagas próximas de mim</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={navCandidaturas}>
                     <View style={style.card}>
                         <Feather name={'star'} size={style.icon.size} color={style.icon.color}/>
                         <View style={style.div}/>

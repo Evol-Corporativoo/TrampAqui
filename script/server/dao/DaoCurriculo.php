@@ -51,7 +51,19 @@ use PSpell\Config;
                 $lista = $p->fetch(PDO::FETCH_ASSOC);
                 return $lista['idCurriculo'];
             } catch (Exception $e){
-                // return $e;
+                $update = 'UPDATE tbcurriculo SET objetivoCurriculo = ?, genero = ?, estadoCivilCurriculo = ?, habilidadesCurriculo = ? WHERE idUsuario = ?';
+                $try = $conexao->prepare($update);
+                $try->bindValue(1, $curriculo->getObjetivo());
+                $try->bindValue(2, $curriculo->getGenero());
+                $try->bindValue(3, $curriculo->getEstadoCivil());
+                $try->bindValue(4, $curriculo->getHabilidades());
+                $try->bindValue(5, $curriculo->getIdUsuario());
+
+                $try->execute();
+                $p->execute();
+                $lista = $p->fetch(PDO::FETCH_ASSOC);
+                return $lista['idCurriculo'];
+
             }
 
         }
@@ -114,6 +126,60 @@ use PSpell\Config;
 
         }
 
+        public static function clearIdioma($idCurriculo){
+
+            $conexao = Conexao::conectar();
+
+            $delete = 'DELETE FROM tbidioma WHERE idCurriculo = ?';
+            $prepare = $conexao->prepare($delete);
+            $prepare->bindValue(1, $idCurriculo);
+            $prepare->execute();
+
+            try{
+                $prepare->execute();
+                // return true;
+            } catch (Exception $e){
+                // return $e;
+            }
+
+        }
+
+        public static function clearFormacao($idCurriculo){
+
+            $conexao = Conexao::conectar();
+
+            $delete = 'DELETE FROM tbformacao WHERE idCurriculo = ?';
+            $prepare = $conexao->prepare($delete);
+            $prepare->bindValue(1, $idCurriculo);
+            $prepare->execute();
+
+            try{
+                $prepare->execute();
+                // return true;
+            } catch (Exception $e){
+                // return $e;
+            }
+
+        }
+
+        public static function clearExperiencia($idCurriculo){
+
+            $conexao = Conexao::conectar();
+
+            $delete = 'DELETE FROM tbexperiencia WHERE idCurriculo = ?';
+            $prepare = $conexao->prepare($delete);
+            $prepare->bindValue(1, $idCurriculo);
+            $prepare->execute();
+
+            try{
+                $prepare->execute();
+                // return true;
+            } catch (Exception $e){
+                // return $e;
+            }
+
+        }
+
         public static function cadastrarExperiencia($experiencias, $idCurriculo){
 
             $conexao = Conexao::conectar();
@@ -133,7 +199,6 @@ use PSpell\Config;
             $prepare->bindValue(4, $termino);
             $prepare->bindValue(5, $experiencias->cidadeExperiencia);
             $prepare->bindValue(6, $idCurriculo);
-            echo($inicio.'|||'.$termino);
 
             try{
                 $prepare->execute();
@@ -163,7 +228,6 @@ use PSpell\Config;
             $prepare->bindValue(4, $formacao->situacaoFormacao);
             $prepare->bindValue(5, $inicio);
             $prepare->bindValue(6, $termino);
-            echo($inicio.'|||'.$termino);
             $prepare->bindValue(7, $idCurriculo);
 
             try{

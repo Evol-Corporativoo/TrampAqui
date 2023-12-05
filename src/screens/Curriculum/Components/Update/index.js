@@ -8,7 +8,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useRoute, useNavigation } from "@react-navigation/native";
 
-export default function Create({display}){
+export default function Update({display}){
 
     const Route = useRoute()
     const data = Route.params.data
@@ -88,8 +88,8 @@ export default function Create({display}){
     }
 
     return(
-        <View style={[style.container,display]}>
-            <Text style={style.main_title}>Monte seu currículo.</Text>
+        <View style={[style.container]}>
+            <Text style={style.main_title}>Refazendo o currículo.</Text>
             <Text style={style.desc}>Preencha as informações adicionais para montar seu currículo do App.</Text>
             <View style={style.input_area}>
                 <Text style={style.label}>O que você busca profissionalmente?</Text>
@@ -461,7 +461,7 @@ export default function Create({display}){
                             }
                             //console.log(object)
 
-                            let url = 'http://localhost/Trampo/script/server/controller/criarCurriculo.php';
+                            let url = 'http://localhost/Trampo/script/server/controller/updateCurriculo.php';
                             let options = {
                                 method: 'POST',
                                 mode: 'cors',

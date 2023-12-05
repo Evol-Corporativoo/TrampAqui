@@ -6,9 +6,23 @@ const style = StyleSheet.create({
         height: '15vh',
         width: '98vw',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        //justifyContent: 'space-between',
         alignItems: 'center',
         paddingTop: '2vh'
+    },
+    close:{
+        backgroundColor: 'red',
+        width: '100vw',
+        height: '7vh',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    text_logout:{
+        fontWeight: 'normal',
+    },
+    text_close:{
+        fontSize: '1.1rem',
+        fontWeight: 'bold'
     },
     l_col:{
         width: '23vw',
@@ -43,7 +57,17 @@ const style = StyleSheet.create({
         fontSize: '1.2em',
         fontWeight: 'bold',
         flex: 1,
+        marginTop: '5%'
     },
+    modalContainer:{
+        height: '100%',
+        width: '100%',
+        alignItems: 'center',
+    },
+    logout:{
+        position: 'absolute',
+        top: '50%'
+    }
 })
 
 export default style;

@@ -6,7 +6,7 @@ export const RegisterContext = createContext({})
 
 export function RegisterProvider({children}){
 
-    const [curriculo, setCurriculo] = useState({})
+    const [curriculo, setCurriculo] = useState()
 
     const [user,setUser] = useState();
     const [next,setNext] = useState([]);

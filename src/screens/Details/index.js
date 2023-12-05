@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { View, Text } from "react-native";
-import { useRoute } from '@react-navigation/native'
+import { useRoute, useFocusEffect } from '@react-navigation/native'
 import style from "./style";
 import numberFormat from "../../../script/client/number-mask";
 import realFormat from "../../../script/client/money-mask";
@@ -11,10 +11,43 @@ export default function Details(){
     const [messageDisplay, setMessageDisplay] = useState({
         display: 'none'
     })
+    const [displayBtn,setDisplayBtn] = useState({
+        display: 'flex'
+    })
+    const [displayCheck, setDisplayCheck] = useState({
+        display: 'none'
+    })
 
     const route = useRoute();
     const data = JSON.parse(route.params.data)
     const user = route.params.user
+
+    function check(){
+        let url = 'http://localhost/Trampo/script/server/controller/checkCandidatura.php'
+        let options = {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({idUsuario: user.idUsuario,idVaga:data.idVaga})
+        }
+        fetch(url,options)
+        .then(response=>response.json())
+        .then(response=>{
+            if(response==false){
+                setDisplayBtn({display:'none'})
+                setDisplayCheck({display: 'flex'})
+            } else {
+                setDisplayBtn({display:'flex'})
+                setDisplayCheck({display: 'none'})
+            }
+        })
+    }
+
+    useFocusEffect(()=>{
+        check()
+    })
 
     let modelo
     if(data.modeloVaga=='remoto'){
@@ -93,14 +126,15 @@ export default function Details(){
                     </View>
                     <View style={style.vaga_endereco}>
                         <Text style={style.detalhes_titulo}>Endereço do trabalho:</Text>
-                        <Text style={style.enderecoVaga}>{`${data.logradouroEmpresa}, ${data.numeroEmpresa} - ${data.bairroEmpresa}, ${data.cidadeEmpresa} - ${data.ufEmpresa}, ${data.cepEmpresa}`}</Text>
+                        <Text style={style.enderecoVaga}>{`${data.logradouroEmpresa}, ${data.numeroEmpresa} ${data.complementoEmpresa} - ${data.bairroEmpresa}, ${data.cidadeEmpresa} - ${data.ufEmpresa}, ${data.cepEmpresa}`}</Text>
                     </View>
                 </View>
                 
             </View>
 
             <Text style={[style.subtitulo_main, messageDisplay]}>Candidatura feita!</Text>
-            <TouchableOpacity style={style.btn_submit}
+            <Text style={[style.subtitulo_main,displayCheck,{fontWeight:'bold',marginTop: '2vh',fontSize: '1.2rem'}]}>Candidatura à vaga já realizada</Text>
+            <TouchableOpacity style={[style.btn_submit,displayBtn]}
                 onPress={()=>{
                     let url = 'http://localhost/Trampo/script/server/controller/candidatura.php'
                     let options = {

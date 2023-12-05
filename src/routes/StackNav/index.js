@@ -19,11 +19,23 @@ import FormSenha from "../../screens/Register/FormSenha";
 
 import Details from "../../screens/Details";
 import Curriculum from "../../screens/Curriculum";
+import Update from "../../screens/Curriculum/Components/Update";
+import Candidaturas from "../../screens/Candidaturas";
 
 export default function Stacks(){
     const Stack = createStackNavigator();
     return(
         <Stack.Navigator initialRouteName="login">
+            <Stack.Screen
+                name='candidaturas'
+                component={Candidaturas}
+                options={options.details}
+            />
+            <Stack.Screen
+                name='update'
+                component={Update}
+                options={options.details}
+            />
             <Stack.Screen
                 name='details'
                 component={Details}

@@ -4,6 +4,7 @@ import { View, TouchableOpacity, Modal, Text } from 'react-native';
 import style from './style';
 import { Feather } from '@expo/vector-icons';
 import { Octicons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 import {RegisterContext} from '../../../../data/context'
 
@@ -35,13 +36,16 @@ export default function Notifications(){
         supportedOrientations='landscape-right'
         >
             <View style={style.modalContainer}>
-            <Text>Conteúdo do Offcanvas</Text>
-            <TouchableOpacity onPress={logout}>
-                <Text>Deslogar</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={toggleModal}>
-                <Text>Fechar Offcanvas</Text>
-            </TouchableOpacity>
+                <Text style={style.title}>Configurações</Text>
+                <TouchableOpacity style={style.logout} onPress={logout}>
+                    <View style={[{flexDirection: 'row'}]}>
+                        <MaterialIcons name="logout" size={24} color="black" />
+                        <Text style={[style.text_close,style.text_logout]}>Deslogar</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity style={style.close} onPress={toggleModal}>
+                    <Text style={style.text_close}>Fechar</Text>
+                </TouchableOpacity>
             </View>
         </Modal>          
     </View>
