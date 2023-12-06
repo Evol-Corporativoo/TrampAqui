@@ -52,6 +52,19 @@ class DaoVaga {
         return json_encode($lista);
     }
 
+    public static function listar(){
+
+        $conexao = Conexao::conectar();
+        $select = "SELECT idVaga, nomeVaga, descVaga, cargoVaga, cargaHorariaVaga, salarioVaga, tipoVaga, modeloVaga, formacaoVaga, tbvaga.idEmpresa, logradouroEmpresa, numeroEmpresa, complementoEmpresa, bairroEmpresa, cidadeEmpresa, ufEmpresa, cepEmpresa, nomeEmpresa FROM tbVaga
+        INNER JOIN tbempresa ON tbvaga.idEmpresa = tbempresa.idEmpresa ORDER BY idVaga DESC";
+        $prepare = $conexao->prepare($select);
+        $prepare->execute();
+        $lista = $prepare->fetchAll(PDO::FETCH_ASSOC);
+        
+        return json_encode($lista);
+
+    }
+
 }
 
 

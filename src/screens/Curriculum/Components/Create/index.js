@@ -476,7 +476,7 @@ export default function Create({display}){
                             .then(response=>{
 
                                 //if(response==true){
-                                    console.log(response)
+                                    
                                     render()
                                 //}
                             })

@@ -19,7 +19,7 @@ export default function Header(){
     return(
         <View style={style.container}>
             <View style={style.l_col}>
-                <Text style={style.welcome}>Bem-Vindo</Text>
+                <Text style={style.welcome}>Bem-Vindo(a)</Text>
                 <Text style={style.username}>{data.nomeUsuario.split(' ')[0]}</Text>
             </View>
             <Notifications/>

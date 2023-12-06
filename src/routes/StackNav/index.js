@@ -25,7 +25,7 @@ import Candidaturas from "../../screens/Candidaturas";
 export default function Stacks(){
     const Stack = createStackNavigator();
     return(
-        <Stack.Navigator initialRouteName="login">
+        <Stack.Navigator initialRouteName="step01">
             <Stack.Screen
                 name='candidaturas'
                 component={Candidaturas}

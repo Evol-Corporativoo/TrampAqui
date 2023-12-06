@@ -37,8 +37,14 @@ const style = StyleSheet.create({
       height: '75vh',
       width: '90vw',
       marginTop: '10vh',
-      backgroundColor: 'grey'
-    }
+    },
+    title:{
+      fontSize: '1.3rem',
+      fontWeight: 'bold',
+      textAlign: 'left',
+      marginBottom: '2vh',
+      marginTop: '3vh',
+    },
     
   });
 

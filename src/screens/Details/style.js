@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 
 const style = StyleSheet.create({
     scroll:{
-        overflow: 'scroll',
+        overflow: 'hidden',
         maxHeight: '85vh',
     },
     container:{

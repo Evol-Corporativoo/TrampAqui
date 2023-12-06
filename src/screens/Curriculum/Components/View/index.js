@@ -72,7 +72,6 @@ export default function ViewCurriculo({display}){
         .then(response=>response.json())
         .then(response=>{
 
-            console.log(response)
             setEstadoCivil(response[0].estadoCivilCurriculo)
             setGenero(response[0].genero)
             setHabilidades(response[0].habilidadesCurriculo)
@@ -81,8 +80,7 @@ export default function ViewCurriculo({display}){
 
             let split_dn = data.dataNascUsuario.split('-')
             let n_dn = split_dn[2]+'/'+split_dn[1]+'/'+split_dn[0]
-            setDataNasc(n_dn) 
-            console.log(typeof response[1])
+            setDataNasc(n_dn)
             setFormacoes(response[1])
             setIdiomas(response[2])
             setExperiencias(response[3])
@@ -94,7 +92,6 @@ export default function ViewCurriculo({display}){
     const Nav = useNavigation()
 
     function navCurriculo(){
-        console.log('oi')
         Nav.navigate('curriculo',{data: data})
     }
 

@@ -16,8 +16,7 @@ const style = StyleSheet.create({
         },
         shadowOpacity: 0.2,
         shadowRadius: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: 'space-between',
         paddingTop: '1vh'
     },
     t_row:{

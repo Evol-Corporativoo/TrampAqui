@@ -4,6 +4,8 @@ import Header from './components/header'
 import style from './style'
 import { useRoute, useNavigation, useFocusEffect } from '@react-navigation/native'
 
+import Results from './components/Results'
+
 export default function Home(){
 
     const Route = useRoute()
@@ -33,7 +35,6 @@ export default function Home(){
         fetch(check_url,options)
         .then(response=>response.json())
         .then(response=>{
-            console.log(response)
             if(response==true){
                 setDisplayWarn({display: 'none'})
                 setDisplayFeed({display: 'flex'})
@@ -59,7 +60,8 @@ export default function Home(){
                 </TouchableOpacity>
             </View>
             <View style={[style.feed,displayFeed]}>
-                <Text>Feed</Text>
+                <Text style={style.title}>Adicionadas recentemente</Text>
+                <Results/>
             </View>
         </View> 
     )

@@ -476,7 +476,6 @@ export default function Update({display}){
                             .then(response=>{
 
                                 //if(response==true){
-                                    console.log(response)
                                     render()
                                 //}
                             })

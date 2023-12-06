@@ -30,12 +30,6 @@
         public static function logar(Usuario $usuario, $campo){
 
             $conexao = Conexao::conectar();
-
-            $cpfNumerico = preg_replace('/[^0-9]/', '', $usuario->getCpf());
-
-            // Adiciona pontos e traço ao CPF formatado
-            $cpfFormatado = substr($cpfNumerico, 0, 3) . '.' . substr($cpfNumerico, 3, 3) . '.' . substr($cpfNumerico, 6, 3) . '-' . substr($cpfNumerico, 9, 2);
-            $usuario->setCpf($cpfFormatado);
             if($campo == 0){
                 $select = 'SELECT COUNT(idUsuario) AS contagem FROM tbUsuario
                        WHERE (emailUsuario = ?)';

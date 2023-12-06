@@ -87,8 +87,6 @@ export default function Details(){
     return(
         <View style={style.container}>
 
-            <View style={style.scroll}>
-
                 <View style={style.header_details}>
                     <View style={style.titulo_area}>
                         <Text style={style.subtitulo_main}>Vaga disponível</Text>
@@ -129,8 +127,6 @@ export default function Details(){
                         <Text style={style.enderecoVaga}>{`${data.logradouroEmpresa}, ${data.numeroEmpresa} ${data.complementoEmpresa} - ${data.bairroEmpresa}, ${data.cidadeEmpresa} - ${data.ufEmpresa}, ${data.cepEmpresa}`}</Text>
                     </View>
                 </View>
-                
-            </View>
 
             <Text style={[style.subtitulo_main, messageDisplay]}>Candidatura feita!</Text>
             <Text style={[style.subtitulo_main,displayCheck,{fontWeight:'bold',marginTop: '2vh',fontSize: '1.2rem'}]}>Candidatura à vaga já realizada</Text>
